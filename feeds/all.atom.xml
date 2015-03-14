@@ -272,7 +272,8 @@ mismatch at digit 16
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;&lt;/p&gt;</summary><category term="python"></category><category term="math"></category></entry><entry><title>Automated drawing of the MOS band diagram</title><link href="https://h-gens.github.io/automated-drawing-of-the-mos-band-diagram.html" rel="alternate"></link><updated>2015-02-28T15:10:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-02-28:automated-drawing-of-the-mos-band-diagram.html</id><summary type="html">&lt;p&gt;This post is part of a 4-part series on physics-based modeling of the MOS capacitor.  &lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Download this post's IPython notebook &lt;a href="https://github.com/h-gens/h-gens.github.io-pelican/tree/master/content/notebooks/"&gt;here&lt;/a&gt;.  &lt;/p&gt;</summary><category term="python"></category><category term="math"></category></entry><entry><title>Automated drawing of the MOS band diagram</title><link href="https://h-gens.github.io/automated-drawing-of-the-mos-band-diagram.html" rel="alternate"></link><updated>2015-02-28T15:10:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-02-28:automated-drawing-of-the-mos-band-diagram.html</id><summary type="html">&lt;p&gt;This post is part of a 4-part series on physics-based modeling of the MOS capacitor.  &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://h-gens.github.io/electrical-characteristics-of-the-mos-capacitor.html"&gt;MOS capacitor derivation&lt;/a&gt;  &lt;/li&gt;
 &lt;li&gt;&lt;a href="https://h-gens.github.io/gausss-law-as-used-in-mos-derivations.html"&gt;Gauss's Law as used in MOS derivations&lt;/a&gt;  &lt;/li&gt;
