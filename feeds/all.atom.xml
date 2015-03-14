@@ -287,7 +287,7 @@ mismatch at digit 16
 &lt;p&gt;This notebook draws the band diagram for the nickel-SiO2-Si system at an arbitrary gate-bulk bias. It uses published conduction/valence band offsets (CBO/VBO) for SiO2 on silicon [1]. Other insulators can be substituted if their CBO/VBO are known, either from published measurements or by resorting to the &lt;a href="https://en.wikipedia.org/wiki/Anderson%27s_rule"&gt;affinity rule&lt;/a&gt;. The CBO/VBO values have no effect on the computed band-bending since gate leakage is ignored, so even fictional values can be input. CBO/VBO are only included so that the insulator can be outlined while showing the effect of &lt;span class="math"&gt;\(\psi_{ox}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;The y-axis of the resulting band diagram will be in eV. However, the values should be interpreted as being relative to the semiconductor's neutral bulk valence band level, &lt;span class="math"&gt;\(E_v(y\rightarrow\infty)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;center&gt;
-&lt;img src="../images/MOSCAP-derivations/mos_cross_section.png"&gt;
+&lt;img src="../images/2015-02-25-MOSCAP-derivations/mos_cross_section.png"&gt;
 &lt;/center&gt;
 &lt;h3 id="a-brief-primer-on-band-bending"&gt;1.1 A brief primer on band-bending&lt;/h3&gt;
 &lt;p&gt;The amount of band-bending in the semiconductor at an arbitrary depth is quantified as potential, &lt;span class="math"&gt;\(\psi\)&lt;/span&gt;. The surface potential, &lt;span class="math"&gt;\(\psi_s\)&lt;/span&gt;, is the total band-bending from the neutral bulk to the oxide/semiconductor interface.&lt;/p&gt;
@@ -1618,7 +1618,7 @@ V_{gb} &amp;amp;= \psi_s + V_{fb} - \frac{Q_s&amp;#39;}{C_{ox}&amp;#39;}
 &lt;p&gt;The primary assumption is that of an oxide whose oxide-related defects are assumed to only exist at the oxide/semiconductor interface. These defects are identified with the &lt;span class="math"&gt;\(Q_o&amp;#39;\)&lt;/span&gt; and &lt;span class="math"&gt;\(Q_{it}&amp;#39;\)&lt;/span&gt; variables. The former is fixed charge that does not change in magnitude with band-bending. The latter is from interface states, whose occupation does change with band-bending.&lt;/p&gt;
 &lt;p&gt;The secondary assumption is that the metal, oxide, and semiconductor layers each exist as uniform planes that stretch to infinity in the x and z directions. The latter assumption permits one to apply Gauss's Law at some arbitrary location and have its result be valid at any location.&lt;/p&gt;
 &lt;center&gt;
-&lt;img src="../images/MOSCAP-derivations/mos_cross_section.png"&gt;
+&lt;img src="../images/2015-02-25-MOSCAP-derivations/mos_cross_section.png"&gt;
 &lt;/center&gt;
 &lt;h2 id="gausss-law"&gt;3.0 Gauss's Law&lt;/h2&gt;
 &lt;p&gt;In differential form, Gauss's Law relates the divergence of electric field to charge density.&lt;/p&gt;
@@ -1912,7 +1912,7 @@ In&amp;nbsp;[4]:
 &lt;/ul&gt;
 &lt;p&gt;Below is an image showing band-bending in an MOS device when &lt;span class="math"&gt;\(V_{gb}\)&lt;/span&gt;, &lt;span class="math"&gt;\(\psi_{ox}\)&lt;/span&gt;, and &lt;span class="math"&gt;\(\psi_s\)&lt;/span&gt; are all positive.&lt;/p&gt;
 &lt;center&gt;
-&lt;img src="../images/MOS-band-diagram/band_bending.png"&gt;
+&lt;img src="../images/2015-02-28-MOS-band-diagram/band_bending.png"&gt;
 &lt;/center&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The above surface potential definition follows the style of Y. Tsividis [3], which is in contrast to works that define surface potential to be the difference between the Fermi level in the neutral bulk with the intrinsic level at the surface (e.g., [4]). The two definitions only differ by a constant (the fermi potential, &lt;span class="math"&gt;\(\phi_f\)&lt;/span&gt;).&lt;/p&gt;
