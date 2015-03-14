@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sitename</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-01-04T09:35:00+01:00</updated><entry><title>Converting IPython notebooks to PDFs</title><link href="https://h-gens.github.io/converting-ipython-notebooks-to-pdfs.html" rel="alternate"></link><updated>2015-01-04T09:35:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-01-04:converting-ipython-notebooks-to-pdfs.html</id><summary type="html">&lt;p&gt;A few weeks ago I wanted to share an &lt;a href="http://ipython.org/"&gt;IPython notebook&lt;/a&gt; with a friend who did not have IPython installed.  The natural choice was to convert it to a PDF, which turned out to be more painful than expected.  The following instructions are written for Windows users and IPython v2.3.  The only dependency is &lt;a href="http://wkhtmltopdf.org/"&gt;wkhtmltopdf&lt;/a&gt; (webkit HTML to PDF).  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;In the notebook editor, export to HTML.&lt;br /&gt;
+  a. File -&amp;gt; Download as -&amp;gt; HTML (.html)&lt;br /&gt;
+  b. You will need to manually collect required images and place them in the correct relative path to the exported file or change src="..." paths in the HTML.  &lt;/li&gt;
+&lt;li&gt;If you use a custom.css file then either edit the exported HTML file to point to it or copy the file to the expected path.&lt;br /&gt;
+  a. custom.css lives in &lt;em&gt;~/.ipython/profile_default/static/custom/&lt;/em&gt;  &lt;/li&gt;
+&lt;li&gt;Open the exported HTML file in your browser and save it (&lt;em&gt;File -&amp;gt; Save As&lt;/em&gt;).&lt;br /&gt;
+  a. While this step seems unnecessary, without it my MathJax markup was the wrong font size in the resulting PDF.  &lt;/li&gt;
+&lt;li&gt;Run wkhtmltopdf on the saved copy from the previous step.&lt;br /&gt;
+  a. &lt;strong&gt;wkhtmltopdf.exe -s Letter -L 40mm -R 40mm -T 20mm -B 20mm --javascript-delay 5000 infile.html outfile.pdf&lt;/strong&gt;  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The &lt;strong&gt;-s&lt;/strong&gt; argument sets the page size.  The &lt;strong&gt;-L, -R, -T, -B&lt;/strong&gt; arguments set the left/right/top/bottom margins.  The &lt;strong&gt;--javascript-delay&lt;/strong&gt; argument gives the MathJax javascript time to run (the time required probably depends on document size).  There are many options available in wkhtmltopdf, which can be viewed by calling the executable from the command line without any arguments.  &lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Getting started with Pelican and IPython notebooks</title><link href="https://h-gens.github.io/getting-started-with-pelican-and-ipython-notebooks.html" rel="alternate"></link><updated>2015-01-03T09:19:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-01-03:getting-started-with-pelican-and-ipython-notebooks.html</id><summary type="html">&lt;p&gt;This site was created with the static site generator, &lt;a href="http://docs.getpelican.com/en/3.5.0/"&gt;Pelican&lt;/a&gt;.  I chose Pelican in order to use &lt;a href="https://jakevdp.github.io"&gt;jakevdp's&lt;/a&gt; liquid_tags notebook &lt;a href="https://github.com/getpelican/pelican-plugins/blob/master/liquid_tags/notebook.py"&gt;plugin&lt;/a&gt; that allows for posting a subset of &lt;a href="http://ipython.org/"&gt;IPython&lt;/a&gt; notebook cells.  The comments below are for Pelican v3.5.0, IPython v1.2, and a December 30, 2014 clone of pelican-plugins.  &lt;/p&gt;
+&lt;p&gt;Below are steps used to install Pelican.  &lt;a href="https://www.python.org/downloads/"&gt;Python&lt;/a&gt; and &lt;a href="http://nodejs.org/download/"&gt;node.js&lt;/a&gt; must be installed (I was unable to generate posts containing IPython notebook files without node.js).  Console/terminal commands are contained in brackets.  &lt;/p&gt;
+&lt;p&gt;An older version of IPython is needed because the CSS class names used for python syntax highlighting changed in IPython v2.3.  The liquid_tags notebook plugin appears to only know about the v1.2 CSS class names.  For example, in an IPython notebook, a function named &lt;code&gt;foo&lt;/code&gt; gets wrapped in a class by way of a &lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt; element.  In IPython v1.2 this becomes &lt;code&gt;&amp;lt;span class="nf"&amp;gt;foo&amp;lt;/span&amp;gt;&lt;/code&gt;, but in v2.3 this is &lt;code&gt;&amp;lt;span class="cm-def"&amp;gt;foo&amp;lt;/span&amp;gt;&lt;/code&gt; (I used Chrome to inspect the elements).  I'm not smart enough to fix it, but I assume the problem begins in the plugin's notebook.custom_highlighter() function.  Inside this function a call is made to &lt;code&gt;HtmlFormatter(cssclass='highlight-ipynb')&lt;/code&gt; where &lt;code&gt;HtmlFormatter&lt;/code&gt; comes from the &lt;a href="http://pygments.org/"&gt;Pygments&lt;/a&gt; library.  &lt;/p&gt;
+&lt;h2&gt;Quick pelican setup&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Make a dedicated directory to house the site's contents and change into it.  &lt;/li&gt;
+&lt;li&gt;Set up a virtual environment&lt;br /&gt;
+  a. &lt;strong&gt;[virtualenv env]&lt;/strong&gt;&lt;br /&gt;
+  b. &lt;strong&gt;[env\scripts\activate]&lt;/strong&gt; &lt;br /&gt;
+  c. &lt;strong&gt;[pip install pelican markdown ipython==1.2]&lt;/strong&gt;  &lt;/li&gt;
+&lt;li&gt;Install plugins/themes&lt;br /&gt;
+  a. &lt;strong&gt;[git clone https://github.com/getpelican/pelican-plugins.git]&lt;/strong&gt;&lt;br /&gt;
+  b. &lt;strong&gt;[git clone https://github.com/getpelican/pelican-themes.git]&lt;/strong&gt;&lt;br /&gt;
+  c. Find other themes by looking at other users' github repositories (e.g. &lt;a href="https://github.com/jakevdp/pelican-octopress-theme"&gt;octopress&lt;/a&gt;, &lt;a href="https://github.com/danielfrg/middle-theme"&gt;middle-theme&lt;/a&gt;)  &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;[pelican-quickstart]&lt;/strong&gt;  // see &lt;a href="http://mathamy.com/migrating-to-github-pages-using-pelican.html"&gt;here&lt;/a&gt; for a list of questions that are asked  &lt;/li&gt;
+&lt;li&gt;Configure Pelican via pelicanconf.py&lt;br /&gt;
+  a. &lt;em&gt;DELETE_OUTPUT_DIRECTORY = False&lt;/em&gt;&lt;br /&gt;
+  b. &lt;em&gt;PLUGIN_PATHS = ['path/to/pelican-plugins']&lt;/em&gt;&lt;br /&gt;
+  c. &lt;em&gt;PLUGINS = ['liquid_tags.notebook', 'liquid_tags.literal']&lt;/em&gt;&lt;br /&gt;
+  d. &lt;em&gt;EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8') if os.path.exists('_nb_header.html') else None&lt;/em&gt;&lt;br /&gt;
+  e. &lt;em&gt;NOTEBOOK_DIR = 'notebooks'&lt;/em&gt;&lt;br /&gt;
+  f. &lt;em&gt;THEME = 'path/to/theme'&lt;/em&gt;&lt;br /&gt;
+  g. &lt;em&gt;LOAD_CONTENT_CACHE = False&lt;/em&gt;  &lt;/li&gt;
+&lt;li&gt;Edit the chosen theme's 'base.html' and add &lt;code&gt;{% if EXTRA_HEADER %}{{ EXTRA_HEADER }}{% endif %}&lt;/code&gt; to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; block  &lt;/li&gt;
+&lt;li&gt;Configure 'content' directory&lt;br /&gt;
+  a. &lt;strong&gt;[mkdir content/images]&lt;/strong&gt;&lt;br /&gt;
+  b. &lt;strong&gt;[mkdir content/notebooks]&lt;/strong&gt;  &lt;/li&gt;
+&lt;li&gt;Run the site generator with &lt;strong&gt;[make html]&lt;/strong&gt; or &lt;strong&gt;[make regenerate]&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Serve the site locally with &lt;strong&gt;[make serve]&lt;/strong&gt; or regenerate files + serve with &lt;strong&gt;[make devserver]&lt;/strong&gt; if not on Windows.  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Posts are written in markdown by the user and stored in content/, where each post's filename should have extension 'md'.  Notebooks are incorporated in a markdown post with:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;{% notebook file.ipynb cells[i:j] %}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The 'cells' argument is optional and can be omitted; the slices are standard python syntax.  The &lt;em&gt;LOAD_CONTENT_CACHE&lt;/em&gt; setting should be False if notebooks are edited after they're added to content/notebooks/.  Otherwise, the cached version is used by Pelican.  &lt;/p&gt;
+&lt;p&gt;Initially, &lt;strong&gt;[make html]&lt;/strong&gt; must be run twice because '_nb_header.html' is only generated after the first run.  This file contains all the CSS/JS present in an IPython notebook.  &lt;/p&gt;
+&lt;p&gt;Math blocks were left-aligned in IPython v1.2 but are centered in IPython v2.3, which is the preferred behavior.  To force centering of math blocks while using v1.2, I made copy of _nb_header.html, edited it to include the addition below, and pointed to it in pelicanconf.py's &lt;em&gt;EXTRA_HEADER&lt;/em&gt; setting.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;style&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+.MathJax_Display{text-align: center !important;}
+&lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Repositories&lt;/h2&gt;
+&lt;p&gt;My choice was to have two repositories.  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Inside the master directory where &lt;strong&gt;[pelican-quickstart]&lt;/strong&gt; is run.  &lt;/li&gt;
+&lt;li&gt;A subdirectory of the above that holds the content pushed to the web server.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The former has a .gitignore file that contains:  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;*.pyc
+cache/
+env/
+output/
+username.github.io/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The latter repository is a &lt;a href="https://pages.github.com/"&gt;GitHub Pages&lt;/a&gt; repository.  The 'output/' directory generated by Pelican is copied to this repository.    &lt;/p&gt;
+&lt;p&gt;This site's repository containing the raw Pelican content can be found &lt;a href="https://github.com/h-gens/h-gens.github.io-pelican"&gt;here&lt;/a&gt;.  The generated site can be found &lt;a href="https://github.com/h-gens/h-gens.github.io"&gt;here&lt;/a&gt;.  &lt;/p&gt;
+&lt;h2&gt;Helpful references&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://jakevdp.github.io/blog/2013/05/07/migrating-from-octopress-to-pelican/"&gt;Migrating from Octopress to Pelican&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ntanjerome.org/blog/how-to-setup-github-user-page-with-pelican/"&gt;How to setup Github User Page with Pelican&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://mathamy.com/migrating-to-github-pages-using-pelican.html"&gt;Migrating to GitHub Pages using Pelican&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://docs.getpelican.com/en/3.1.1/getting_started.html"&gt;Getting started&lt;/a&gt; (Pelican docs)&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://pirsquared.org/blog/pelican-tags-vs-categories.html"&gt;tags-vs-categories in Pelican&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Script to summarize available Pelican themes&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;Ugly script used to summarize all pelican-themes.&lt;/span&gt;
+&lt;span class="sd"&gt;https://github.com/getpelican/pelican-themes.&lt;/span&gt;
+
+&lt;span class="sd"&gt;Place this script one level below THEMES_DIR.&lt;/span&gt;
+&lt;span class="sd"&gt;It will generate summary.html containing the themes.  &lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OrderedDict&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;od&lt;/span&gt;
+
+&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;pelican-themes&amp;#39;&lt;/span&gt;
+
+&lt;span class="c"&gt;# first, discover all themes that have screenshots&lt;/span&gt;
+&lt;span class="c"&gt;# each screenshot&amp;#39;s filename is stored&lt;/span&gt;
+&lt;span class="n"&gt;contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;accumulated_screenshots&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;od&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;theme_directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theme_directory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.git&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;theme_contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theme_directory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;accumulated_screenshots&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;theme_file&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;theme_contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;theme_file&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;jpg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;gif&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="n"&gt;accumulated_screenshots&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theme_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# second, create an HTML file&lt;/span&gt;
+&lt;span class="c"&gt;# the IMG elements point to the accumulated screenshots&lt;/span&gt;
+&lt;span class="n"&gt;to_write&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;theme&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;screenshots&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;accumulated_screenshots&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iteritems&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;theme&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;screenshot&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;screenshots&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="c"&gt;# print the theme&amp;#39;s name only once&lt;/span&gt;
+            &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;h1&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;/h1&amp;gt;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;theme&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;screenshot_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;screenshot&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;center&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;&amp;lt;img src=&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot; height=500&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;screenshot_path&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;/center&amp;gt;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;summary.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;writelines&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="python"></category></entry></feed>
