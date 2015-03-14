@@ -17,7 +17,8 @@ function addSidebarToggler() {
   /* 
   I removed this conditional so that the sidebar would permanently go away.
   I always want it in footer-mode.
-  However, there is a colored vertical bar on the right edge still present.  
+  However, there is a colored vertical bar on the right edge still present. 
+  - it gets removed by editing static/css/main.css. 
   */
   // if(!$('body').hasClass('sidebar-footer')) {
   //   $('#content').append('<span class="toggle-sidebar"></span>');

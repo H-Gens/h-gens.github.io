@@ -1757,7 +1757,8 @@ jQuery(document).ready(function($) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <link href="/favicon.png" rel="icon">
+    <link href="/favicon.png" rel="icon">
+
   <link href="/theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
 
@@ -1777,11 +1778,11 @@ jQuery(document).ready(function($) {
 
 
 <ul class="main-navigation">
-    <li class="active">
-    <a href="/category/math.html">Math</a>
-    </li>
     <li >
     <a href="/category/misc.html">Misc</a>
+    </li>
+    <li class="active">
+    <a href="/category/physics.html">Physics</a>
     </li>
 </ul></nav>
   <div id="main">
@@ -1818,7 +1819,7 @@ jQuery(document).ready(function($) {
 </ul>
 <p>Below is an image showing band-bending in an MOS device when <span class="math">\(V_{gb}\)</span>, <span class="math">\(\psi_{ox}\)</span>, and <span class="math">\(\psi_s\)</span> are all positive.</p>
 <center>
-<img src="../images/MOS-band-diagram/band_bending.png">
+<img src="../images/2015-02-28-MOS-band-diagram/band_bending.png">
 </center>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -1828,7 +1829,7 @@ jQuery(document).ready(function($) {
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[9]:
+In&nbsp;[1]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -1840,6 +1841,8 @@ In&nbsp;[9]:
 <span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
 <span class="c"># make all lines have this thickness by default</span>
 <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;lines.linewidth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c"># set a default figure size</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="c"># -----------------------</span>
 <span class="c"># user-defined settings</span>
 <span class="c"># -----------------------</span>
@@ -2006,7 +2009,7 @@ y_a &amp;= \int_{\psi_a}^{\psi_s} \frac{d\psi}{\mbox{sign}(\psi) \sqrt{\frac{2q}
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[10]:
+In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># -----------------------</span>
@@ -2061,7 +2064,7 @@ In&nbsp;[10]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[13]:
+In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># -----------------------</span>
@@ -2081,7 +2084,7 @@ In&nbsp;[13]:
 <span class="n">Vgb</span> <span class="o">=</span> <span class="n">SPE</span><span class="p">(</span><span class="n">psis</span><span class="p">)</span>
 
 <span class="c"># create figure, label axes, turn grid on</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;y (nm)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;relative to bulk valence band (eV)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
@@ -2395,7 +2398,7 @@ RERERERERERERETEhf8PVLmB5mM0bUMAAAAASUVORK5CYII=
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[12]:
+In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># define the components of rho</span>
@@ -2405,7 +2408,7 @@ In&nbsp;[12]:
 <span class="n">p</span> <span class="o">=</span> <span class="n">p_o</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">psi</span> <span class="o">/</span> <span class="n">phit</span><span class="p">)</span>
 
 <span class="c"># plot the components of rho</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;y (nm)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;(# / cm$^3$)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
@@ -2418,7 +2421,7 @@ In&nbsp;[12]:
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;best&#39;</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;size&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
 
 <span class="c"># show magnitude of rho on a log scale</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;y (nm)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;$|</span><span class="se">\\</span><span class="s">rho/q|$ (# / cm$^3$)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
@@ -3037,19 +3040,20 @@ iIiIiIiIiIiIiBTA/wMZ1MXoxGztUQAAAABJRU5ErkJggg==
 <ol style="list-style-type: decimal">
 <li>J. Robertson, P W Peacock, Chapter 4.3 (Electronic structure and band offsets of high-dielectric-constant gate oxides) of High k Gate Dielectrics, Taylor and Francis, 2003. <a href="http://www.academia.edu/5393337/Electronic_structure_and_band_offsets_of_high-dielectric-constant_gate_oxides">link here</a></li>
 </ol>
-</div></p></div>
+</div></p>
+<p>Download this post's IPython notebook <a href="https://github.com/h-gens/h-gens.github.io-pelican/tree/master/content/notebooks/">here</a>.  </p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">
-      <a href="/author/hg.html">H.G.</a>
+        H.G.
     </span>
   </span>
 <time datetime="2015-02-28T15:10:00+01:00" pubdate>Sat 28 February 2015</time>  <span class="categories">
-    <a class='category' href='/category/math.html'>math</a>
+    <a class='category' href='/category/physics.html'>physics</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/python.html">python</a>,    <a class="category" href="/tag/math.html">math</a>  </span>
+    <a class="category" href="/tag/python.html">python</a>,    <a class="category" href="/tag/math.html">math</a>,    <a class="category" href="/tag/physics.html">physics</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -3080,15 +3084,15 @@ iIiIiIiIiIiIiBTA/wMZ1MXoxGztUQAAAABJRU5ErkJggg==
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="/category/math.html">math</a></li>
         <li><a href="/category/misc.html">misc</a></li>
+        <li><a href="/category/physics.html">physics</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/python.html">python</a>,    <a href="/tag/math.html">math</a>  </section>
+    <a href="/tag/python.html">python</a>,    <a href="/tag/physics.html">physics</a>,    <a href="/tag/math.html">math</a>  </section>
 
 
 
