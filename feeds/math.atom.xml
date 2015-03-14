@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>sitename</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/math.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-03-14T03:14:00+01:00</updated><entry><title>Pi and Pythagoras</title><link href="https://h-gens.github.io/pi-and-pythagoras.html" rel="alternate"></link><updated>2015-03-14T03:14:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-03-14:pi-and-pythagoras.html</id><summary type="html">&lt;p&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;center&gt;
+&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_1.png"&gt;
+&lt;/center&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="introduction"&gt;1.0 Introduction&lt;/h2&gt;
+&lt;p&gt;This post contains a derivation of a recurrence relation that can be used to calculate &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. While it's not useful for the purpose of calculating to any decimal place imaginable, what's notable is that it only uses the Pythagorean thereom and should therefore be easy to follow. Unsurprisingly, the recurrence relation is neither original nor unique because it falls under the category of using polygons to compute &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; (&lt;a href="https://en.wikipedia.org/wiki/Pi#Polygon_approximation_era"&gt;attributed to Archimedes&lt;/a&gt;). At the end of this post, the derived recurrence relation is implemented in code and run.&lt;/p&gt;
+&lt;p&gt;There is more than one way to use polygons in the computation of &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. One could follow &lt;a href="http://itech.fgcu.edu/faculty/clindsey/mhf4404/archimedes/archimedes.html"&gt;Archimedes' proof&lt;/a&gt;, which uses a theorem from Euclid's &lt;em&gt;Elements&lt;/em&gt;. There are other &lt;a href="http://www.themathpage.com/atrig/pi.htm"&gt;discussions&lt;/a&gt; that make use of trigonometric functions. Of course, one could just use the Pythagorean theorem by reducing the n-sided polygons to right triangles, as done here.&lt;/p&gt;
+&lt;p&gt;I went through a few pages of google search results and found similar posts. The first link's code can achieve a much larger decimal place than that shown here because the author used a specialized decimal type instead of the default float type available in Python.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.craig-wood.com/nick/articles/pi-archimedes/"&gt;Pi - Archimedes&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.physicsinsights.org/pi_from_pythagoras-1.html"&gt;Finding π from Pythagoras's Theorem&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A good historical account of &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; that I found while briefly searching is found &lt;a href="http://www.math.rutgers.edu/~cherlin/History/Papers2000/wilson.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="problem-set-up"&gt;2.0 Problem set up&lt;/h2&gt;
+&lt;p&gt;Consider one quarter of a circle with arbitrary radius, &lt;span class="math"&gt;\(r\)&lt;/span&gt;, between &lt;span class="math"&gt;\(0\)&lt;/span&gt; and &lt;span class="math"&gt;\(90\)&lt;/span&gt; degrees. The below will mathematically describe the outer perimeter of many triangles drawn inside this region. The outer perimeter is composed of the triangles whose hypotneuses are closest to the circle's arc. The quantity of triangles drawn will be proportional to an integer index, &lt;span class="math"&gt;\(n\)&lt;/span&gt;. All variables make reference to &lt;span class="math"&gt;\(n\)&lt;/span&gt; via a subscript.&lt;/p&gt;
+&lt;h4 id="variable-definitions"&gt;Variable definitions&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(r\)&lt;/span&gt; is the radius.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(T_n\)&lt;/span&gt; refers to any right triangle newly established at the &lt;span class="math"&gt;\(n\)&lt;/span&gt;-th iteration.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(L_n\)&lt;/span&gt; refers to any right triangle's leg.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(H_n\)&lt;/span&gt; refers to the hypotneuse of any small triangle (&lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;) that composes a portion of the outer perimeter.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(P_n\)&lt;/span&gt; is the outer perimeter.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="subscript-meanings"&gt;Subscript meanings&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Subscripts &lt;span class="math"&gt;\(B\)&lt;/span&gt; and &lt;span class="math"&gt;\(S\)&lt;/span&gt; refer to any big and small triangles, respectively.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(L_{nB}\)&lt;/span&gt; indicates a leg that is unique to &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(L_{nS}\)&lt;/span&gt; indicates a leg that is unique to &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(L_{nC}\)&lt;/span&gt; indicates a leg that is common to &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt; and &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Below are explanatory images that indicate most of the above variables. They are for &lt;span class="math"&gt;\(n = 1\)&lt;/span&gt;, and the procedure to arrive at the drawn line segments is outlined in the following subsections. The first figure indicates triangles, and the second figure indicates line segment lengths. Omitted from the second figure are the radius labels (the radii are at &lt;span class="math"&gt;\(0^o\)&lt;/span&gt;, &lt;span class="math"&gt;\(45^o\)&lt;/span&gt;, and &lt;span class="math"&gt;\(90^o\)&lt;/span&gt;). The figures are an attempt to convey that there are two sets (big/small) of identical triangles at each iteration, and that by calculating the properties of one triangle in each set, all other triangles' properties are known.&lt;/p&gt;
+&lt;p&gt;Blue lines always correspond to refinements made at the previous iteration. Green lines are the new refinements made at the current iteration. This combination of line segments produces the set of &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt; and &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; at iteration &lt;span class="math"&gt;\(n\)&lt;/span&gt;.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_2.png"&gt; &lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_3.png"&gt;
+&lt;/center&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="3.0-Analysis"&gt;3.0 Analysis&lt;a class="anchor-link" href="#3.0-Analysis"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="analysis-for-n-0"&gt;3.1 Analysis for n = 0&lt;/h3&gt;
+&lt;p&gt;Inside the starting region a right triangle is created by connecting points &lt;span class="math"&gt;\((0, r)\)&lt;/span&gt; and &lt;span class="math"&gt;\((r, 0)\)&lt;/span&gt;. The hypotneuse can be easily calculated by the Pythagorean thereom, and for &lt;span class="math"&gt;\(n=0\)&lt;/span&gt; the hypotneuse happens to be equal to the outer perimeter.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_4.png"&gt;
+&lt;/center&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+H_0 &amp;amp;= \sqrt{r^2 + r^2} \\
+P_0 &amp;amp;= H_0 = \sqrt{2} \cdot r
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="analysis-for-n-1"&gt;3.2 Analysis for n = 1&lt;/h3&gt;
+&lt;p&gt;The previous right triangle's hypotneuse (&lt;span class="math"&gt;\(H_0\)&lt;/span&gt;) is bisected by a line from the origin to the circle's perimeter at an angle exactly halfway between the legs (or &lt;a href="https://en.wikipedia.org/wiki/Cathetus"&gt;catheti&lt;/a&gt;) of &lt;span class="math"&gt;\(T_0\)&lt;/span&gt;. This action creates four new right triangles since the hypotneuse of &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; forms a right angle with the bisecting line. These new triangles are two of &lt;span class="math"&gt;\(T_{1B}\)&lt;/span&gt; and two of &lt;span class="math"&gt;\(T_{1S}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_5.png"&gt;
+&lt;/center&gt;
+&lt;p&gt;Since the hypotneuse of &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; has been bisected, the leg that is common to any &lt;span class="math"&gt;\(T_{1B}\)&lt;/span&gt;, &lt;span class="math"&gt;\(T_{1S}\)&lt;/span&gt; pair is known (this is &lt;span class="math"&gt;\(L_{1C}\)&lt;/span&gt;). The hypotneuse of &lt;span class="math"&gt;\(T_{1B}\)&lt;/span&gt; is known because it is just &lt;span class="math"&gt;\(T_0\)&lt;/span&gt;'s leg, &lt;span class="math"&gt;\(r\)&lt;/span&gt;. Therefore, we can solve for the missing leg, &lt;span class="math"&gt;\(L_{1B}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+L_{1C} &amp;amp;= \frac{H_0}{2} \\
+L_{1B} &amp;amp;= \sqrt{r^2 - L_{1C}^2}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The line segment labeled &lt;span class="math"&gt;\(L_{1S}\)&lt;/span&gt; is just the radius minus &lt;span class="math"&gt;\(L_{1B}\)&lt;/span&gt;. This permits calculation of &lt;span class="math"&gt;\(H_1\)&lt;/span&gt;, which is the hypotneuse of the small triangle &lt;span class="math"&gt;\(T_{1S}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+L_{1S} &amp;amp;= r - L_{1B} \\
+H_1 &amp;amp;= \sqrt{L_{1S}^2 + L_{1C}^2}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Finally, the outer perimeter defined by the two new small right triangles is twice the value of a single small triangle's hypotneuse, &lt;span class="math"&gt;\(H_1\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+P_1 &amp;amp;= 2 \cdot H_1 \\
+  &amp;amp;= 2 \cdot \sqrt{L_{1S}^2 + L_{1C}^2}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="analysis-at-n-2-and-above"&gt;3.3 Analysis at n = 2 and above&lt;/h3&gt;
+&lt;p&gt;As the index increases, the efforts in the above are repeated. &lt;span class="math"&gt;\(2^{n+1}\)&lt;/span&gt; right triangles are created, of which half are &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt; and half are &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;. Any &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt; will have a leg that's shared with a &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; called &lt;span class="math"&gt;\(L_{nC}\)&lt;/span&gt;. This common leg is exactly half the hypotneuse from the previous iteration. Using this information one can solve for &lt;span class="math"&gt;\(L_{nB}\)&lt;/span&gt;, &lt;span class="math"&gt;\(L_{nS}\)&lt;/span&gt;, and &lt;span class="math"&gt;\(H_n\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+L_{nC} &amp;amp;= \frac{H_{n-1}}{2} \\
+L_{nB} &amp;amp;= \sqrt{r^2 - L_{nC}^2} \\
+L_{nS} &amp;amp;= r - L_{nB}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;With the legs of &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; known, one can find the hypotneuse of &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; using the Pythagorean theorem.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+H_n &amp;amp;= \sqrt{L_{nS}^2 + L_{nC}^2} \\
+  &amp;amp;= \sqrt{\left(r - \sqrt{r^2 - \left(\frac{H_{n-1}}{2}\right)^2}\right)^2 + \left(\frac{H_{n-1}}{2}\right)^2}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The above is a recurrence relation for &lt;span class="math"&gt;\(H_n\)&lt;/span&gt; for all &lt;span class="math"&gt;\(n &amp;gt; 0\)&lt;/span&gt;. The initial value derived above, &lt;span class="math"&gt;\(H_0\)&lt;/span&gt;, is just &lt;span class="math"&gt;\(\sqrt{2} \cdot r\)&lt;/span&gt;. The perimeter at an arbitrary index is comprised of &lt;span class="math"&gt;\(2^n\)&lt;/span&gt; right triangles' hypotneuses.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+P_n &amp;amp;= 2^n \cdot H_n \\
+  &amp;amp;= 2^n \cdot \sqrt{\left(r - \sqrt{r^2 - \frac{H_{n-1}^2}{4}}\right)^2 + \frac{H_{n-1}^2}{4}}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Below are plots for &lt;span class="math"&gt;\(n = 2\)&lt;/span&gt; and &lt;span class="math"&gt;\(n = 3\)&lt;/span&gt;. Only &lt;span class="math"&gt;\(T_n\)&lt;/span&gt; and &lt;span class="math"&gt;\(T_{n-1}\)&lt;/span&gt; are drawn to reduce graphical clutter. The new iteration's triangles become more difficult to see as the index increases so plots of &lt;span class="math"&gt;\(n \geq 4\)&lt;/span&gt; are not shown.&lt;/p&gt;
+&lt;center&gt;
+&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_6.png"&gt;&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_7.png"&gt;
+&lt;/center&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="computing-pi"&gt;4.0 Computing &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;The circumference of the circle is approximated by &lt;span class="math"&gt;\(4 \cdot P_n\)&lt;/span&gt;, where the factor of four is present since we only considered the region between &lt;span class="math"&gt;\(0\)&lt;/span&gt; and &lt;span class="math"&gt;\(90\)&lt;/span&gt; degrees (all other regions are identical). The quantity &lt;span class="math"&gt;\(4 \cdot P_n\)&lt;/span&gt; will always be slightly smaller than the true circumference but would converge in the limit as &lt;span class="math"&gt;\(n \rightarrow \infty\)&lt;/span&gt;. Equating &lt;span class="math"&gt;\(4 \cdot P_n\)&lt;/span&gt; with the true circumference, &lt;span class="math"&gt;\(\pi \cdot 2 \cdot r\)&lt;/span&gt;, and solving for &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; yields:&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+\pi &amp;amp;= \lim_{n\rightarrow\infty} \frac{2 \cdot P_n}{r}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Since computing something to infinity is not possible, let's accept that we're stuck with an approximation and recognize it using &lt;span class="math"&gt;\(\approx\)&lt;/span&gt; in the below expression for &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. These equations are readily implemented in code with a &lt;code&gt;for&lt;/code&gt; loop and can be evaluated for as large an &lt;span class="math"&gt;\(n\)&lt;/span&gt; that our computing resources will permit.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+H_0 &amp;amp;= \sqrt{2} \cdot r  \\
+H_n &amp;amp;= \sqrt{\left(r - \sqrt{r^2 - \frac{H_{n-1}^2}{4}}\right)^2 + \frac{H_{n-1}^2}{4}} \mbox{ , for } n&amp;gt;0  \\
+\pi &amp;amp;\approx \frac{2^{n+1}}{r} \cdot H_n
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The downside to this approach is that as &lt;span class="math"&gt;\(n\)&lt;/span&gt; increases, &lt;span class="math"&gt;\(H_n\)&lt;/span&gt; gets smaller and smaller. For example, consider the unit circle with &lt;span class="math"&gt;\(r = 1\)&lt;/span&gt;. As &lt;span class="math"&gt;\(n\)&lt;/span&gt; increases, the above equation presents a precision challenge for any computer since it involves the difference of a constant (unity) with an ever-decreasing quantity (&lt;span class="math"&gt;\(H_{n-1}^2/4\)&lt;/span&gt;) that approaches zero as &lt;span class="math"&gt;\(n \rightarrow \infty\)&lt;/span&gt;.&lt;/p&gt;
+&lt;h3 id="in-terms-of-incremental-area"&gt;4.1 In terms of incremental area&lt;/h3&gt;
+&lt;p&gt;It is also possible to use the triangles' areas to compute &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. The additional area contributed by each iteration can be computed by analyzing &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;, the area of which is written below by using the Pythagorean theorem for &lt;span class="math"&gt;\(L_{nS}\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+A_{TnS} &amp;amp;= \frac{1}{2} \cdot L_{nC} \cdot L_{nS}  \\
+  &amp;amp;= \frac{1}{2} \cdot \frac{H_{n-1}}{2} \cdot \sqrt{H_n^2 - \left( \frac{H_{n-1}}{2} \right)^2}  \\
+  &amp;amp;= \frac{H_{n-1}}{4} \cdot \left(r - \sqrt{r^2 - \left( \frac{H_{n-1}}{2} \right)^2} \right)
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;There are &lt;span class="math"&gt;\(2^n\)&lt;/span&gt; such &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; in the region between &lt;span class="math"&gt;\(0\)&lt;/span&gt; and &lt;span class="math"&gt;\(90\)&lt;/span&gt; degrees. Therefore, multiplying &lt;span class="math"&gt;\(A_{TnS}\)&lt;/span&gt; by &lt;span class="math"&gt;\(2^{n+2}\)&lt;/span&gt; gives the total incremental area at an arbitrary index, &lt;span class="math"&gt;\(\Delta A_n\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+\Delta A_n &amp;amp;= 2^{n+2} \cdot A_{TnS}  \\
+  &amp;amp;= 2^n \cdot H_{n-1} \cdot \left(r - \sqrt{r^2 - \left( \frac{H_{n-1}}{2} \right)^2} \right)
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The total area at some index, &lt;span class="math"&gt;\(A_n\)&lt;/span&gt;, is an accumulation of &lt;span class="math"&gt;\(\Delta A_n\)&lt;/span&gt; plus the initial value, &lt;span class="math"&gt;\(A_0\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+A_0 &amp;amp;= 2 \cdot r^2  \\
+A_n &amp;amp;= A_0 + \sum_n \Delta A_n \mbox{ , for } n&amp;gt;0
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;As for the perimeter case, if the area-based result is used to compute &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; then it is at best an approximation. When implemented in code it has the same precision limitations as the perimeter case.&lt;/p&gt;
+&lt;p&gt;&lt;span class="math"&gt;\[
+\begin{aligned}
+\pi &amp;amp;\approx \frac{A_n}{r^2}
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="5.0-Python-implementation"&gt;5.0 Python implementation&lt;a class="anchor-link" href="#5.0-Python-implementation"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[8]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;
+
+&lt;span class="c"&gt;# http://www.piday.org/million/&lt;/span&gt;
+&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;3.141592653589793238462643383279502884197169399375&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# and many more ...&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compare_pi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Compare the approximation to pi given by &amp;#39;value&amp;#39; to the actual value.&lt;/span&gt;
+&lt;span class="sd"&gt;    - &amp;#39;value&amp;#39; argument must be a float&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="c"&gt;# first, convert &amp;#39;value&amp;#39; into a super-long string&lt;/span&gt;
+    &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%.050g&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+    &lt;span class="c"&gt;# next, iterate over the characters in the PI string&lt;/span&gt;
+    &lt;span class="c"&gt;# if there is a mismatch between PI and value, stop iterating&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;PI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;correct portion = &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="c"&gt;# the conditional ignores each string&amp;#39;s decimal symbol&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;mismatch at digit &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;break&lt;/span&gt;
+
+&lt;span class="c"&gt;# assign the radius and number of iterations&lt;/span&gt;
+&lt;span class="c"&gt;# make r a float to avoid unintentional integer division&lt;/span&gt;
+&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
+&lt;span class="c"&gt;# in its current form, the best this script can do is 16 decimal places&lt;/span&gt;
+&lt;span class="c"&gt;# this occurs for iterations &amp;gt;= 24&lt;/span&gt;
+&lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;
+
+&lt;span class="c"&gt;# during every loop:&lt;/span&gt;
+&lt;span class="c"&gt;#   (1) compute the current hypotneuse using the previous hypotneuse&lt;/span&gt;
+&lt;span class="c"&gt;#   (2) compute pi using the current hypotneuse&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;H_current&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;H_current&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;H_previous&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+            &lt;span class="n"&gt;H_previous&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;pi_approximated&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;H_current&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
+    &lt;span class="n"&gt;H_previous&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;H_current&lt;/span&gt;
+
+    &lt;span class="c"&gt;# conditional that avoids printing each iteration&amp;#39;s details&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;...&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;continue&lt;/span&gt;
+
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;--------------------------------------------------------&amp;#39;&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;iteration number &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;n = {:}, which gives {:,} triangles&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;calculated pi   = &lt;/span&gt;&lt;span class="si"&gt;%.030g&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;pi_approximated&lt;/span&gt;
+    &lt;span class="n"&gt;compare_pi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pi_approximated&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+--------------------------------------------------------
+iteration number 1
+n = 0, which gives 2 triangles
+calculated pi   = 2.82842712474619029094924371748
+correct portion = 
+mismatch at digit 1
+--------------------------------------------------------
+iteration number 2
+n = 1, which gives 4 triangles
+calculated pi   = 3.061467458920718698323071294
+correct portion = 3.
+mismatch at digit 2
+...
+...
+...
+--------------------------------------------------------
+iteration number 23
+n = 22, which gives 8,388,608 triangles
+calculated pi   = 3.14159265358977624060798916616
+correct portion = 3.1415926535897
+mismatch at digit 15
+--------------------------------------------------------
+iteration number 24
+n = 23, which gives 16,777,216 triangles
+calculated pi   = 3.14159265358979000737349451811
+correct portion = 3.14159265358979
+mismatch at digit 16
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;&lt;/p&gt;</summary><category term="python"></category><category term="math"></category></entry></feed>
