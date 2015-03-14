@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>sitename</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/all.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-03-14T03:14:00+01:00</updated><entry><title>Pi and Pythagoras</title><link href="https://h-gens.github.io/pi-and-pythagoras.html" rel="alternate"></link><updated>2015-03-14T03:14:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-03-14:pi-and-pythagoras.html</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/all.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-03-14T03:14:00+01:00</updated><entry><title>Pi and Pythagoras</title><link href="https://h-gens.github.io/pi-and-pythagoras.html" rel="alternate"></link><updated>2015-03-14T03:14:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-03-14:pi-and-pythagoras.html</id><summary type="html">&lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;center&gt;
 &lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_1.png"&gt;
