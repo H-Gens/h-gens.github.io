@@ -1999,7 +1999,7 @@ y_a &amp;= \int_{\psi_a}^{\psi_s} \frac{d\psi}{\mbox{sign}(\psi) \sqrt{\frac{2q}
 \end{aligned}\]</span></p>
 <p>The band diagram function will:</p>
 <ol style="list-style-type: decimal">
-<li>Compute the surface potential from a given <span class="math">\(V_{gb}\)</span> value.</li>
+<li>Define/compute the surface potential (<span class="math">\(\psi_s\)</span>), gate-bulk voltage (<span class="math">\(V_{gb}\)</span>), and oxide potential (<span class="math">\(\psi_{ox}\)</span>).<br /></li>
 <li>Create a new variable (<span class="math">\(\psi\)</span>) that ranges from <span class="math">\(\psi_s\)</span> to near-zero.<br /></li>
 <li>At each <span class="math">\(\psi\)</span> value, numerically integrate the right-hand side of the <span class="math">\(y\)</span> expression to obtain the corresponding value of <span class="math">\(y\)</span>.</li>
 </ol>
@@ -2405,10 +2405,9 @@ In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="c"># define the components of rho</span>
-<span class="n">rho_by_q</span> <span class="o">=</span> <span class="n">p_o</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="n">psi</span> <span class="o">/</span> <span class="n">phit</span><span class="p">)</span> <span class="o">-</span> \
-    <span class="n">n_o</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">psi</span> <span class="o">/</span> <span class="n">phit</span><span class="p">)</span> <span class="o">+</span> <span class="n">Nd</span> <span class="o">-</span> <span class="n">Na</span>
 <span class="n">n</span> <span class="o">=</span> <span class="n">n_o</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">psi</span> <span class="o">/</span> <span class="n">phit</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">p_o</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">psi</span> <span class="o">/</span> <span class="n">phit</span><span class="p">)</span>
+<span class="n">rho_by_q</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">n</span> <span class="o">+</span> <span class="n">Nd</span> <span class="o">-</span> <span class="n">Na</span>
 
 <span class="c"># plot the components of rho</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
