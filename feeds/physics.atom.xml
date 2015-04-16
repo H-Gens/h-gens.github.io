@@ -1287,7 +1287,7 @@ E_{ox} &amp;amp;= \frac{\psi_{ox}}{t_{ox}}
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h3 id="result-3-potential-balance-equation"&gt;2.3 Result #3: potential balance equation&lt;/h3&gt;
-&lt;p&gt;The potential balance equation comes from performing a KVL around the MOS band diagram with the vacuum level (&lt;span class="math"&gt;\(E_{VAC}\)&lt;/span&gt;) included. While manuevering clockwise starting at the metal's Fermi level, a potential rise is positive and a drop is considered negative.&lt;/p&gt;
+&lt;p&gt;The potential balance equation comes from performing a KVL around the MOS band diagram with the local vacuum level (&lt;span class="math"&gt;\(E_{VAC}\)&lt;/span&gt;) included. While manuevering clockwise starting at the metal's Fermi level, a rise is taken to be positive and a drop is considered negative.&lt;/p&gt;
 &lt;center&gt;
 &lt;img src="../images/2015-02-27-MOS-SPE/figure_1.png"&gt;
 &lt;/center&gt;
@@ -1421,7 +1421,7 @@ A Gaussian surface simply encloses some region where Gauss's Law is to be applie
 &lt;center&gt;
 &lt;img src="../images/2015-02-25-MOSCAP-derivations/mos_cross_section.png"&gt;
 &lt;/center&gt;
-&lt;p&gt;Due to the one-dimensional analysis, all derived quantities' units have area in the denominator (each quantity is in &amp;quot;per unit area&amp;quot;). A typical MOS capacitor with gate area &lt;span class="math"&gt;\(A\)&lt;/span&gt; will have electrodes on the top of the gate and at the bottom of the substrate. If one is measuring capacitance, then to compare the measured result to the calculated value one would have to either multiply the measured capacitance by &lt;span class="math"&gt;\(A\)&lt;/span&gt; or multiply the calculated value by &lt;span class="math"&gt;\(A\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Due to the one-dimensional analysis, all derived quantities' units have area in the denominator (each quantity is in &amp;quot;per unit area&amp;quot;). A typical MOS capacitor with gate area &lt;span class="math"&gt;\(A\)&lt;/span&gt; will have electrodes on the top of the gate and at the bottom of the substrate. If one is measuring capacitance, then to compare the measured result to the calculated value one would have to either divide the measured capacitance by &lt;span class="math"&gt;\(A\)&lt;/span&gt; or multiply the calculated value by &lt;span class="math"&gt;\(A\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;Furthermore, it is assumed that the semiconductor layer is infinitely thick. This provides a convenient boundary condition where potential and field decay to zero. More on this topic is discussed in Section 6.0 when Poisson's equation is solved.&lt;/p&gt;
 &lt;h3 id="doping-limitations"&gt;1.3 Doping limitations&lt;/h3&gt;
 &lt;p&gt;Some of the expressions in this notebook are exact, while some of the expressions are derived using the charge sheet approximation. The code containing the latter group of expressions will fail if the doping is set to zero or if acceptor doping density is equal to donor doping density. This is because the charge sheet approximation assumes there is a net doping density above the intrinsic level. Therefore, some plots will not appear or will contain curves that do not cover the entire independent range, both usually caused by NaN values.&lt;/p&gt;
@@ -1611,7 +1611,6 @@ In&amp;nbsp;[4]:
 &lt;span class="n"&gt;Vfb&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;phi_ms&lt;/span&gt; &lt;span class="c"&gt;# flatband voltage, V&lt;/span&gt;
 &lt;span class="c"&gt;# oxide capacitance per unit area, F / cm^2&lt;/span&gt;
 &lt;span class="n"&gt;Coxp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;eox&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;e0&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;tox&lt;/span&gt;
-&lt;span class="c"&gt;# if both Nd and Na are zero, then make one slightly higher&lt;/span&gt;
 &lt;span class="c"&gt;# calculate effective compensated doping densities&lt;/span&gt;
 &lt;span class="c"&gt;# - assume complete ionization&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;Na&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Nd&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -1647,10 +1646,10 @@ In&amp;nbsp;[4]:
 &lt;h2 id="charge-density"&gt;4.0 Charge density&lt;/h2&gt;
 &lt;p&gt;The four charges present in the semiconductor bulk are:&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;free electrons (negative charge)&lt;/li&gt;
-&lt;li&gt;free holes (positive charge)&lt;/li&gt;
-&lt;li&gt;ionized donors (positive charge)&lt;/li&gt;
-&lt;li&gt;ionized acceptors (negative charge)&lt;/li&gt;
+&lt;li&gt;free holes (&lt;span class="math"&gt;\(p\)&lt;/span&gt;, positive charge)&lt;/li&gt;
+&lt;li&gt;free electrons (&lt;span class="math"&gt;\(n\)&lt;/span&gt;, negative charge)&lt;/li&gt;
+&lt;li&gt;ionized donors (&lt;span class="math"&gt;\(N_d^+\)&lt;/span&gt;, positive charge)&lt;/li&gt;
+&lt;li&gt;ionized acceptors (&lt;span class="math"&gt;\(N_a^-\)&lt;/span&gt;, negative charge)&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;All have units #/cm&lt;span class="math"&gt;\(^3\)&lt;/span&gt;. These sum to form the charge density, &lt;span class="math"&gt;\(\rho\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\[\begin{aligned}
@@ -1663,7 +1662,7 @@ In&amp;nbsp;[4]:
 n(\psi) &amp;amp;= N_c e^{(q\psi - E_c + E_f)/kT}  \\
 p(\psi) &amp;amp;= N_v e^{(-q\psi + E_v - E_f)/kT}
 \end{aligned}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Both can be rewritten in terms of the intrinsic carrier concentration (&lt;span class="math"&gt;\(n_i\)&lt;/span&gt;) and the intrinsic energy level (&lt;span class="math"&gt;\(E_i\)&lt;/span&gt;). This is accomplished by substituting the result found by writing &lt;span class="math"&gt;\(n_i = n(\psi=0, E_f=E_i)\)&lt;/span&gt; and &lt;span class="math"&gt;\(n_i = p(\psi=0, E_f=E_i)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;Both carrier concentrations can be rewritten in terms of the intrinsic carrier concentration (&lt;span class="math"&gt;\(n_i\)&lt;/span&gt;) and the intrinsic energy level (&lt;span class="math"&gt;\(E_i\)&lt;/span&gt;). This is accomplished by substituting the result found by writing &lt;span class="math"&gt;\(n_i = n(\psi=0, E_f=E_i)\)&lt;/span&gt; and &lt;span class="math"&gt;\(n_i = p(\psi=0, E_f=E_i)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\[\begin{aligned}
 n(\psi) &amp;amp;= n_i e^{(q\psi - E_i + E_f)/kT}  \\
 p(\psi) &amp;amp;= n_i e^{(-q\psi + E_i - E_f)/kT}
@@ -1706,7 +1705,7 @@ N_a^- &amp;amp;\approx N_a
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="fermi-level"&gt;5.0 Fermi level&lt;/h2&gt;
-&lt;p&gt;The Fermi level (&lt;span class="math"&gt;\(E_f\)&lt;/span&gt;) appears in every bias-dependent expression of semiconductor charge. It describes the state of the substrate deep in the neutral bulk and is an equilibrium value where band-bending is zero. &lt;span class="math"&gt;\(E_f\)&lt;/span&gt; can be found by setting &lt;span class="math"&gt;\(\rho(\psi_s=0)\)&lt;/span&gt; to zero and inputting all known parameters. Due to the exponential functions, there is no explicit solution for &lt;span class="math"&gt;\(E_f\)&lt;/span&gt;, which means a numerical search can be employed.&lt;/p&gt;
+&lt;p&gt;The Fermi level (&lt;span class="math"&gt;\(E_f\)&lt;/span&gt;) appears in every bias-dependent expression of semiconductor charge. It describes the state of the substrate deep in the neutral bulk (where band-bending is zero) and is an equilibrium value. &lt;span class="math"&gt;\(E_f\)&lt;/span&gt; can be found by setting &lt;span class="math"&gt;\(\rho(\psi_s=0)\)&lt;/span&gt; to zero and inputting all known parameters. Due to the exponential functions there is no explicit solution for &lt;span class="math"&gt;\(E_f\)&lt;/span&gt;, which means a numerical search can be employed.&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\[\begin{aligned}
 0 &amp;amp;= \rho \\
   &amp;amp;= p - n + N_d - N_a
@@ -2100,11 +2099,11 @@ SZIkSZIkSZIkSZIkSZKk9v1/uJz+xuEVwH0AAAAASUVORK5CYII=
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="surface-potential-equation"&gt;7.0 Surface potential equation&lt;/h2&gt;
-&lt;p&gt;The surface potential equation (SPE) gives the mathematical relationship between gate-bulk bias and band-bending. &lt;a href="/mos-surface-potential-equation.html"&gt;It is derived elsewhere&lt;/a&gt; and is written below for the case of zero oxide-related defects.&lt;/p&gt;
+&lt;p&gt;The surface potential equation (SPE) gives the mathematical relationship between gate-bulk bias and band-bending. The former is applied to a MOS capacitor's terminals during measurement, while the latter is induced in the semiconductor and is therefore a dependent variable. &lt;a href="/mos-surface-potential-equation.html"&gt;The SPE is derived elsewhere&lt;/a&gt; and is written below for the case of zero oxide-related defects.&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\[\begin{aligned}
 V_{gb} &amp;amp;= V_{fb} + \psi_s - \frac{Q_s&amp;#39;}{C_{ox}&amp;#39;}
 \end{aligned}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\(\psi_s\)&lt;/span&gt; is solved-for by analysis of the SPE, which is a transcendental equation. For the case of a trap-free oxide, &lt;span class="math"&gt;\(\psi_s\)&lt;/span&gt; can be approximated from the SPE with a high degree of accuracy [6].&lt;/p&gt;
+&lt;p&gt;Given a particular &lt;span class="math"&gt;\(V_{gb}\)&lt;/span&gt;, then &lt;span class="math"&gt;\(\psi_s\)&lt;/span&gt; is solved-for by analysis of the SPE (a transcendental equation). For the case of a trap-free oxide, &lt;span class="math"&gt;\(\psi_s\)&lt;/span&gt; can be approximated from the SPE with a high degree of accuracy [6].&lt;/p&gt;
 &lt;p&gt;The flatband voltage has been emphasized in the below plots. Note that when &lt;span class="math"&gt;\(V_{gb} &amp;lt; V_{fb}\)&lt;/span&gt; then &lt;span class="math"&gt;\(\psi_s &amp;lt; 0\)&lt;/span&gt;. Conversely, when &lt;span class="math"&gt;\(V_{gb} &amp;gt; V_{fb}\)&lt;/span&gt; then &lt;span class="math"&gt;\(\psi_s &amp;gt; 0\)&lt;/span&gt;. This is an important demarcation that separates the accumulation/depletion regions discussed in the next section.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
@@ -5193,7 +5192,7 @@ C_{gb}&amp;#39; &amp;amp;= \frac{C_s&amp;#39; C_{ox}&amp;#39;}{C_s&amp;#39; + C_
 C_s&amp;#39; &amp;amp;= \sqrt{\frac{q\epsilon_s}{2}} H  \\
 H &amp;amp;= \frac{\frac{df}{d\psi_s}}{\sqrt{f}}
 \end{aligned}\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;One applies L'Hôpital's rule to &lt;span class="math"&gt;\(H^2\)&lt;/span&gt; in order to eliminate the square root. After squaring both sides one finds that the denominator's term, &lt;span class="math"&gt;\(\frac{df}{d\psi_s}\)&lt;/span&gt;, is already known from the expression for &lt;span class="math"&gt;\(C_s&amp;#39;\)&lt;/span&gt;. The remaining unknown is the numerator's derivative.&lt;/p&gt;
+&lt;p&gt;One applies L'Hôpital's rule to &lt;span class="math"&gt;\(H^2\)&lt;/span&gt; in order to eliminate the square root. During the course of applying this procedure one finds that the denominator's derivative, &lt;span class="math"&gt;\(\frac{df}{d\psi_s}\)&lt;/span&gt;, is already known from the expression for &lt;span class="math"&gt;\(C_s&amp;#39;\)&lt;/span&gt;. The remaining unknown is the numerator's derivative.&lt;/p&gt;
 &lt;p&gt;&lt;span class="math"&gt;\[\begin{aligned}
 H^2(\psi_s=0) &amp;amp;= \frac{\left. \frac{d}{d\psi_s} \left(\frac{df}{d\psi_s}\right)^2 \right|_0}{\left. \frac{df}{d\psi_s} \right|_0} \\
 \frac{d}{d\psi_s} \left(\frac{df}{d\psi_s}\right)^2 &amp;amp;= 2 \frac{df}{d\psi_s} \frac{d^2f}{d\psi_s^2}  \\
