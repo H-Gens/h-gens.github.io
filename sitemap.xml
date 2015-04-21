@@ -5,28 +5,35 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://h-gens.github.io/</loc>
-<lastmod>2015-04-16T19:28:12-00:00</lastmod>
+<lastmod>2015-04-21T08:24:19-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://h-gens.github.io/archives.html</loc>
-<lastmod>2015-04-16T19:28:12-00:00</lastmod>
+<lastmod>2015-04-21T08:24:19-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://h-gens.github.io/tags.html</loc>
-<lastmod>2015-04-16T19:28:12-00:00</lastmod>
+<lastmod>2015-04-21T08:24:19-00:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://h-gens.github.io/categories.html</loc>
-<lastmod>2015-04-16T19:28:12-00:00</lastmod>
+<lastmod>2015-04-21T08:24:19-00:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html</loc>
+<lastmod>2015-04-17T20:41:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -89,7 +96,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://h-gens.github.io/category/misc.html</loc>
-<lastmod>2015-01-04T09:35:00+00:09</lastmod>
+<lastmod>2015-04-17T20:41:00+00:09</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -103,7 +110,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://h-gens.github.io/tag/python.html</loc>
-<lastmod>2015-03-14T03:14:00+00:09</lastmod>
+<lastmod>2015-04-17T20:41:00+00:09</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -124,7 +131,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://h-gens.github.io/author/hg.html</loc>
-<lastmod>2015-03-14T03:14:00+00:09</lastmod>
+<lastmod>2015-04-17T20:41:00+00:09</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>

@@ -1,5 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/all.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-03-14T03:14:00+01:00</updated><entry><title>Pi and Pythagoras</title><link href="https://h-gens.github.io/pi-and-pythagoras.html" rel="alternate"></link><updated>2015-03-14T03:14:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-03-14:pi-and-pythagoras.html</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/all.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-04-17T20:41:00+02:00</updated><entry><title>Controlling instruments over GPIB with SCPI</title><link href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html" rel="alternate"></link><updated>2015-04-17T20:41:00+02:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-04-17:controlling-instruments-over-gpib-with-scpi.html</id><summary type="html">&lt;p&gt;An electronics lab contains equipment that can usually be controlled through at least two means:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;the instrument's front panel  &lt;/li&gt;
+&lt;li&gt;the instrument's GPIB address  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;GPIB stands for &lt;a href="https://en.wikipedia.org/wiki/IEEE-488"&gt;General Purpose Interface Bus&lt;/a&gt; and provides a way of sending commands to the instrument.  These commands are referred to as SCPI commands (&lt;a href="https://en.wikipedia.org/wiki/Standard_Commands_for_Programmable_Instrumentation"&gt;Standard Commands for Programmable Instruments&lt;/a&gt;), which are often found listed in an instrument's programming manual.  Every operation that can be performed via the instrument's front panel should have an equivalent SCPI command.  &lt;/p&gt;
+&lt;p&gt;This post shows a brief Python script that talks to an Agilent E5270 DC parameteric measurement instrument and conducts a staircase sweep.  To run it one needs a GPIB card on the controlling computer, the &lt;a href="https://pyvisa.readthedocs.org/en/master/"&gt;PyVISA&lt;/a&gt; package, Keysight IO Libraries Suite, and the GPIB address of the E5270.  The script should work with an HP4142, which has almost identical settings and SCPI commands.  &lt;/p&gt;
+&lt;h3&gt;Why Python?&lt;/h3&gt;
+&lt;p&gt;Well, I personally do data analysis in Python (numpy/scipy/matplotlib modules and the Spyder IDE that is reminiscent of MATLAB; see &lt;a href="https://code.google.com/p/pythonxy/"&gt;Python(x,y)&lt;/a&gt; or &lt;a href="https://winpython.github.io/"&gt;WinPython&lt;/a&gt;), so it made sense for me to automate measurements in a language I'm already comfortable in.  I find the file IO and string/data manipulation features of Python to be much easier to use and read than those available in other languages.  Just by glancing at example code in a programming manual written in C++ or Visual Basic makes me readily appreciative of the straightforwardness and readibility of Python code.  &lt;/p&gt;
+&lt;h3&gt;Useful links&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://cp.literature.agilent.com/litweb/pdf/E5260-90010.pdf"&gt;Agilent E5270 Series Programming Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.keysight.com/en/pd-1985909/io-libraries-suite?&amp;amp;cc=US&amp;amp;lc=eng"&gt;Keysight IO Libraries Suite&lt;/a&gt;&lt;br /&gt;
+(Note: Keysight was the electronics measurement division of Agilent before being spun-off.  Similarly, Agilent was the electronics measurement division of HP before being spun-off.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Example Python script&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;A sequence of commands to execute a staircase measurement of a 3-terminal&lt;/span&gt;
+&lt;span class="sd"&gt;transistor (source/gate/drain terminals)&lt;/span&gt;
+
+&lt;span class="sd"&gt;Assumed SMUs (source measure units) and their channels:&lt;/span&gt;
+&lt;span class="sd"&gt;    two high-power SMUs on channels 2 and 4&lt;/span&gt;
+&lt;span class="sd"&gt;    one medium-power SMU on channel 5&lt;/span&gt;
+
+&lt;span class="sd"&gt;Biasing conditions:&lt;/span&gt;
+&lt;span class="sd"&gt;    source on channel 2 is biased at a constant 0V.  &lt;/span&gt;
+&lt;span class="sd"&gt;    drain on channel 4 is staircased from 0 to 10V by 0.1V.  &lt;/span&gt;
+&lt;span class="sd"&gt;    gate on channel 5 is biased at a constant 3V.&lt;/span&gt;
+
+&lt;span class="sd"&gt;See manual for a description of arguments passed to each SCPI command.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;visa&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+
+&lt;span class="c"&gt;# the GPIB card number on the local computer&lt;/span&gt;
+&lt;span class="n"&gt;card_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="c"&gt;# the instrument&amp;#39;s GPIB address&lt;/span&gt;
+&lt;span class="c"&gt;# (use visa.get_instruments_list() to discover instruments)&lt;/span&gt;
+&lt;span class="n"&gt;instrument_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;17&lt;/span&gt;
+&lt;span class="c"&gt;# time to sleep after issuing a write command&lt;/span&gt;
+&lt;span class="c"&gt;# (this slows Python down and allows the instrument to keep up)&lt;/span&gt;
+&lt;span class="n"&gt;delay&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;
+
+&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;visa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;instrument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;GPIB&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;::&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;::INSTR&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;card_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;instrument_address&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="n"&gt;delay&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;delay&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c"&gt;# instrument setup&lt;/span&gt;
+&lt;span class="c"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c"&gt;# reset the instrument&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;*rst&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# set the measurement mode to staircase sweep&lt;/span&gt;
+&lt;span class="c"&gt;# specify the channels that should be measured&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;mm 2,2,4,5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# configure the staircase on channel 4 (drain)&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;wv 4,1,0,0,10,101,1e-2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# enable the output switches on channels 2,4,5&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;cn 2,4,5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# set the bias of the constant channels 2/5 (source/gate)&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;dv 2,0,0,1e-2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;dv 5,0,3,1e-4&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c"&gt;# execute and close&lt;/span&gt;
+&lt;span class="c"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c"&gt;# execute the measurement&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;xe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# close all channels so they no longer are outputting voltage&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;cl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# read the result from the output buffer&lt;/span&gt;
+&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;While the measurement data is now held in the 'result' variable, it needs to be processed.  As-is, 'result' is a string composed of comma-separated values.  If this string were to be split by commas (i.e., &lt;code&gt;result.split(',')&lt;/code&gt;) then the length of the resulting list would be 3 x &lt;code&gt;len(staircase)&lt;/code&gt;.  One multiplies by 3 because for each point in the staircase sweep there are three channels measured whose values appear consecutively in the 'result' string.  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Example 'result' string:&lt;/strong&gt; NEI+0.00005E-09,NBI+0.00000E-09,NDI+0.00010E-09,NEI+0.00010E-09,NBI+0.00007E-09,NDI+0.00080E-09, ...  (Notice how the second character's cycle starts over after the third group of values.)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In each comma-separated value there are three preceding characters.  The first character is the status code.  The second character is the letter code.  There is a unique letter code for each channel in the E5270, so a mapping dictionary is referred to in order to figure out which channel corresponds to which letter code.  The third character indicates the data type.  See page 36 of the programming manual linked above.  &lt;/p&gt;
+&lt;h2&gt;Processing the result&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c"&gt;# parsing data&lt;/span&gt;
+&lt;span class="c"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c"&gt;# this is the letter code mapping dictionary&lt;/span&gt;
+&lt;span class="c"&gt;# (see page 37 of the programming manual)&lt;/span&gt;
+&lt;span class="n"&gt;CHANNELS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Is&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# channel 2&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# channel 4&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;E&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# channel 5&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c"&gt;# split the CSV string so it can be iterated over&lt;/span&gt;
+&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;currents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;Is&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c"&gt;# iterate over the result list and store the values as floats&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="c"&gt;# get the terminal name by consulting the mapping dictionary&lt;/span&gt;
+    &lt;span class="n"&gt;terminal_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CHANNELS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+    &lt;span class="c"&gt;# convert the numerical portion of the string to a float&lt;/span&gt;
+    &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:])&lt;/span&gt;
+    &lt;span class="c"&gt;# store value within the &amp;#39;currents&amp;#39; dict&lt;/span&gt;
+    &lt;span class="n"&gt;currents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;terminal_name&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c"&gt;# plotting&lt;/span&gt;
+&lt;span class="c"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c"&gt;# create the independent variable (Vd) so the result can be plotted&lt;/span&gt;
+&lt;span class="n"&gt;Vd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linspace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;101&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# plot the data&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;currents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;semilogy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;currents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Closing&lt;/h3&gt;
+&lt;p&gt;That concludes the quick introduction to instrument control via GPIB+SCPI.  In a more complete instrument controller, I would send additional commands to change instrument settings such as integration time and store results in &lt;a href="http://pandas.pydata.org/"&gt;pandas&lt;/a&gt; DataFrames (or numpy arrays).  Instead of a one-off script, it is often useful to create a class for a particular instrument that contains methods to perform many different types of measurements.  This makes the instrument an importable library with a human-readable command set and avoids having to write/remember SCPI commands.  &lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Pi and Pythagoras</title><link href="https://h-gens.github.io/pi-and-pythagoras.html" rel="alternate"></link><updated>2015-03-14T03:14:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-03-14:pi-and-pythagoras.html</id><summary type="html">&lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;center&gt;
 &lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_1.png"&gt;
