@@ -1,5 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/all.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-04-17T20:41:00+02:00</updated><entry><title>Controlling instruments over GPIB with SCPI</title><link href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html" rel="alternate"></link><updated>2015-04-17T20:41:00+02:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-04-17:controlling-instruments-over-gpib-with-scpi.html</id><summary type="html">&lt;p&gt;An electronics lab contains equipment that can usually be controlled through at least two means:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/all.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-11-21T14:21:00+01:00</updated><entry><title>Recovering a lost combination</title><link href="https://h-gens.github.io/recovering-a-lost-combination.html" rel="alternate"></link><updated>2015-11-21T14:21:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-11-21:recovering-a-lost-combination.html</id><summary type="html">&lt;p&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="combination-recovery"&gt;Combination Recovery&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Only apply this method to locks for which you are the sole owner.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I lost the combination to an old Master Lock of mine. Fortunately, figuring out the combination for my type of lock is a &lt;a href="http://www.wikihow.com/Crack-a-%22Master-Lock%22-Combination-Lock"&gt;well-known process&lt;/a&gt;. Unfortunately, the previous link's method for finding the third value in the combination did not work for me, but I &lt;a href="http://masterunlocked.com/index1.html"&gt;found instructions&lt;/a&gt; that were very helpful. Once the third value is found there is an algorithm to generate 80 possible combinations, which is where Python comes in.&lt;/p&gt;
+&lt;h4 id="procedure-outline"&gt;Procedure outline&lt;/h4&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Clear the lock by spinning the dial clockwise by three revolutions, ending with the dial set to zero.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Rotate the dial through its twelve &amp;quot;sticking points&amp;quot; and find the non-fake sticking point. This non-fake point is the third value in the lock's combination.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once the third value is found, run the script that follows.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="sticking-points"&gt;Sticking points&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Sticking points occur when you pull up on the shackle and are only able to rotate the dial by approximately +/- 0.5.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once you've found a sticking point, move to the next one by removing tension from the shackle. Rotate the dial slightly counter-clockwise so that the next sticking point will catch upon tensioning the shackle again.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="a-sticking-point-is-likely-fake-if"&gt;A sticking point is likely fake if:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The dial pivots between two whole numbers (e.g., 20 and 21).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When you pull up super hard on the shackle the dial's rotation becomes limited. (When I successfully found my third value, the dial rotated by +/-0.5 freely regardless of how much tension I applied to the shackle.)&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Python-implementation"&gt;Python implementation&lt;a class="anchor-link" href="#Python-implementation"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[1]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;1. First find the non-fake sticking point (the third value).&lt;/span&gt;
+&lt;span class="sd"&gt;2. Enter the third_value below, then run the script.&lt;/span&gt;
+&lt;span class="sd"&gt;3. Try each combination until the correct one is found.&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="c"&gt;# ------------------------&lt;/span&gt;
+&lt;span class="c"&gt;# user-defined input&lt;/span&gt;
+&lt;span class="c"&gt;# ------------------------&lt;/span&gt;
+&lt;span class="c"&gt;# Find the third value manually, then assign it here.&lt;/span&gt;
+&lt;span class="n"&gt;third_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;
+
+&lt;span class="c"&gt;# ------------------------&lt;/span&gt;
+&lt;span class="c"&gt;# algorithm&lt;/span&gt;
+&lt;span class="c"&gt;# ------------------------&lt;/span&gt;
+&lt;span class="c"&gt;# Divide by 4 and store the remainder.  The remainder is called the&lt;/span&gt;
+&lt;span class="c"&gt;# &amp;quot;magic number&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;third_value&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+
+&lt;span class="c"&gt;# Compute the possible values for the first value.&lt;/span&gt;
+&lt;span class="n"&gt;first_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+
+&lt;span class="c"&gt;# Compute the possible values for the second value.&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="n"&gt;second_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="c"&gt;# The two values closest to third_value can be eliminated.&lt;/span&gt;
+&lt;span class="n"&gt;second_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;second_values&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;third_value&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="c"&gt;# Compute the possible combinations.&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;first_values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;second_values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;third_value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="c"&gt;# Uncomment the following line to pause the looping.&lt;/span&gt;
+        &lt;span class="c"&gt;# r = raw_input(&amp;#39;continue ?&amp;#39;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+0 - 2 - 20
+0 - 6 - 20
+0 - 10 - 20
+0 - 14 - 20
+0 - 26 - 20
+0 - 30 - 20
+0 - 34 - 20
+0 - 38 - 20
+4 - 2 - 20
+4 - 6 - 20
+4 - 10 - 20
+4 - 14 - 20
+4 - 26 - 20
+4 - 30 - 20
+4 - 34 - 20
+4 - 38 - 20
+8 - 2 - 20
+8 - 6 - 20
+8 - 10 - 20
+8 - 14 - 20
+8 - 26 - 20
+8 - 30 - 20
+8 - 34 - 20
+8 - 38 - 20
+12 - 2 - 20
+12 - 6 - 20
+12 - 10 - 20
+12 - 14 - 20
+12 - 26 - 20
+12 - 30 - 20
+12 - 34 - 20
+12 - 38 - 20
+16 - 2 - 20
+16 - 6 - 20
+16 - 10 - 20
+16 - 14 - 20
+16 - 26 - 20
+16 - 30 - 20
+16 - 34 - 20
+16 - 38 - 20
+20 - 2 - 20
+20 - 6 - 20
+20 - 10 - 20
+20 - 14 - 20
+20 - 26 - 20
+20 - 30 - 20
+20 - 34 - 20
+20 - 38 - 20
+24 - 2 - 20
+24 - 6 - 20
+24 - 10 - 20
+24 - 14 - 20
+24 - 26 - 20
+24 - 30 - 20
+24 - 34 - 20
+24 - 38 - 20
+28 - 2 - 20
+28 - 6 - 20
+28 - 10 - 20
+28 - 14 - 20
+28 - 26 - 20
+28 - 30 - 20
+28 - 34 - 20
+28 - 38 - 20
+32 - 2 - 20
+32 - 6 - 20
+32 - 10 - 20
+32 - 14 - 20
+32 - 26 - 20
+32 - 30 - 20
+32 - 34 - 20
+32 - 38 - 20
+36 - 2 - 20
+36 - 6 - 20
+36 - 10 - 20
+36 - 14 - 20
+36 - 26 - 20
+36 - 30 - 20
+36 - 34 - 20
+36 - 38 - 20
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;&lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Controlling instruments over GPIB with SCPI</title><link href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html" rel="alternate"></link><updated>2015-04-17T20:41:00+02:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-04-17:controlling-instruments-over-gpib-with-scpi.html</id><summary type="html">&lt;p&gt;An electronics lab contains equipment that can usually be controlled through at least two means:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;the instrument's front panel  &lt;/li&gt;
 &lt;li&gt;the instrument's GPIB address  &lt;/li&gt;
