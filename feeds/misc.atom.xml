@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-11-21T14:21:00+01:00</updated><entry><title>Recovering a lost combination</title><link href="https://h-gens.github.io/recovering-a-lost-combination.html" rel="alternate"></link><updated>2015-11-21T14:21:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-11-21:recovering-a-lost-combination.html</id><summary type="html">&lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="combination-recovery"&gt;Combination Recovery&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Only apply this method to locks for which you are the sole owner.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;I lost the combination to an old Master Lock of mine. Fortunately, figuring out the combination for my type of lock is a &lt;a href="http://www.wikihow.com/Crack-a-%22Master-Lock%22-Combination-Lock"&gt;well-known process&lt;/a&gt;. Unfortunately, the previous link's method for finding the third value in the combination did not work for me, but I &lt;a href="http://masterunlocked.com/index1.html"&gt;found instructions&lt;/a&gt; that were very helpful. Once the third value is found there is an algorithm to generate 80 possible combinations, which is where Python comes in.&lt;/p&gt;
 &lt;h4 id="procedure-outline"&gt;Procedure outline&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;Only apply this method to locks for which you are the sole owner.&lt;/em&gt;&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;Clear the lock by spinning the dial clockwise by three revolutions, ending with the dial set to zero.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Rotate the dial through its twelve &amp;quot;sticking points&amp;quot; and find the non-fake sticking point. This non-fake point is the third value in the lock's combination.&lt;/p&gt;&lt;/li&gt;
@@ -167,7 +166,8 @@ In&amp;nbsp;[1]:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;&lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Controlling instruments over GPIB with SCPI</title><link href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html" rel="alternate"></link><updated>2015-04-17T20:41:00+02:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-04-17:controlling-instruments-over-gpib-with-scpi.html</id><summary type="html">&lt;p&gt;An electronics lab contains equipment that can usually be controlled through at least two means:&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;Download this post's IPython notebook &lt;a href="https://github.com/h-gens/h-gens.github.io-pelican/tree/master/content/notebooks/"&gt;here&lt;/a&gt;.  &lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Controlling instruments over GPIB with SCPI</title><link href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html" rel="alternate"></link><updated>2015-04-17T20:41:00+02:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-04-17:controlling-instruments-over-gpib-with-scpi.html</id><summary type="html">&lt;p&gt;An electronics lab contains equipment that can usually be controlled through at least two means:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;the instrument's front panel  &lt;/li&gt;
 &lt;li&gt;the instrument's GPIB address  &lt;/li&gt;
