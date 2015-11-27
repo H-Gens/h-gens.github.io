@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Converting IPython notebooks to PDFs &mdash; H.Gens</title>
+  <title>Tag: cycling &mdash; H.Gens</title>
   <meta name="author" content="H.G.">
 
 
@@ -1785,7 +1785,7 @@ jQuery(document).ready(function($) {
     <li >
     <a href="https://h-gens.github.io/category/math.html">Math</a>
     </li>
-    <li class="active">
+    <li >
     <a href="https://h-gens.github.io/category/misc.html">Misc</a>
     </li>
     <li >
@@ -1798,46 +1798,28 @@ jQuery(document).ready(function($) {
   <div id="main">
     <div id="content">
 <div>
-  <article class="hentry" role="article">
-<header>
-      <h1 class="entry-title">Converting IPython notebooks to PDFs</h1>
-    <p class="meta">
-<time datetime="2015-01-04T09:35:00+01:00" pubdate>Sun 04 January 2015</time>    </p>
-</header>
+	<article role="article">
+    	<header>
+    		<h1 class="entry-title">Tag: cycling</h1>
+    	</header>
 
-  <div class="entry-content"><p>A few weeks ago I wanted to share an <a href="http://ipython.org/">IPython notebook</a> with a friend who did not have IPython installed.  The natural choice was to convert it to a PDF, which turned out to be more painful than expected.  The following instructions are written for Windows users and IPython v2.3.  The only dependency is <a href="http://wkhtmltopdf.org/">wkhtmltopdf</a> (webkit HTML to PDF).  </p>
-<ol>
-<li>In the notebook editor, export to HTML.<br />
-  a. File -&gt; Download as -&gt; HTML (.html)<br />
-  b. You will need to manually collect required images and place them in the correct relative path to the exported file or change src="..." paths in the HTML.  </li>
-<li>If you use a custom.css file then either edit the exported HTML file to point to it or copy the file to the expected path.<br />
-  a. custom.css lives in <em>~/.ipython/profile_default/static/custom/</em>  </li>
-<li>Open the exported HTML file in your browser and save it (<em>File -&gt; Save As</em>).<br />
-  a. While this step seems unnecessary, without it my MathJax markup was the wrong font size in the resulting PDF.  </li>
-<li>Run wkhtmltopdf on the saved copy from the previous step.<br />
-  a. <strong>wkhtmltopdf.exe -s Letter -L 40mm -R 40mm -T 20mm -B 20mm --javascript-delay 5000 infile.html outfile.pdf</strong>  </li>
-</ol>
-<p>The <strong>-s</strong> argument sets the page size.  The <strong>-L, -R, -T, -B</strong> arguments set the left/right/top/bottom margins.  The <strong>--javascript-delay</strong> argument gives the MathJax javascript time to run (the time required probably depends on document size).  There are many options available in wkhtmltopdf, which can be viewed by calling the executable from the command line without any arguments.  </p></div>
-    <footer>
-<p class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">
-        H.G.
-    </span>
-  </span>
-<time datetime="2015-01-04T09:35:00+01:00" pubdate>Sun 04 January 2015</time>  <span class="categories">
-    <a class='category' href='https://h-gens.github.io/category/misc.html'>misc</a>
-  </span>
-  <span class="categories">
-    <a class="category" href="https://h-gens.github.io/tag/python.html">python</a>  </span>
-</p><div class="sharing">
-</div>    </footer>
-  </article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
-  </section>
+    	<div id="blog-archives">
+            <h2>2015</h2>
+                    <article>
+                        <h1><a href="https://h-gens.github.io/cycling-across-the-us.html">Cycling across the U.S.</a></h1>
+                        <time datetime="2015-11-26 17:39:00+01:00" pubdate>
+                            <span class="month">Nov</span>
+                            <span class="day">26</span>
+                            <span class="year">2015</span>
+                        </time>
+                        <footer>
+                            <span class="categories">posted in
+                                <a class='category' href='https://h-gens.github.io/category/outdoors.html'>outdoors</a>
+                            </span>
+                        </footer>
+                    </article>
+	    </div>
+    </article>
 </div>
 <aside class="sidebar">
   <section>
@@ -1845,18 +1827,6 @@ jQuery(document).ready(function($) {
     <ul id="recent_posts">
       <li class="post">
           <a href="https://h-gens.github.io/cycling-across-the-us.html">Cycling across the U.S.</a>
-      </li>
-      <li class="post">
-          <a href="https://h-gens.github.io/prindle-19-basics.html">Prindle 19 basics</a>
-      </li>
-      <li class="post">
-          <a href="https://h-gens.github.io/recovering-a-lost-combination.html">Recovering a lost combination</a>
-      </li>
-      <li class="post">
-          <a href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html">Controlling instruments over GPIB with SCPI</a>
-      </li>
-      <li class="post">
-          <a href="https://h-gens.github.io/pi-and-pythagoras.html">Pi and Pythagoras</a>
       </li>
     </ul>
   </section>
@@ -1907,9 +1877,6 @@ jQuery(document).ready(function($) {
 </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'h-gens';
-          var disqus_identifier = '/converting-ipython-notebooks-to-pdfs.html';
-          var disqus_url = 'https://h-gens.github.io/converting-ipython-notebooks-to-pdfs.html';
-          var disqus_title = 'Converting IPython notebooks to PDFs';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
