@@ -3979,7 +3979,7 @@ RERERERERERERERExEn/DxciBmSq8iYFAAAAAElFTkSuQmCC
 <p><span class="math">\[\begin{aligned}
 \frac{d^2\psi}{dy^2} &amp;= -\frac{q(p - N_a + N_d)}{\epsilon_s}  \\
 \rightarrow f_A(\psi_s) &amp;= \phi_t p_o \left(e^{-q\psi_s/kT} - 1 \right) + \psi_s \left(N_a - N_d\right) \\
-Q_{bA}&#39; &amp;= -\mbox{sign}(\psi_s) \sqrt{2q\epsilon_s f_h(\psi_s)} 
+Q_{bA}&#39; &amp;= -\mbox{sign}(\psi_s) \sqrt{2q\epsilon_s f_A(\psi_s)} 
 \end{aligned}\]</span></p>
 <p>Above flatband for an nMOS device when <span class="math">\(\psi_s \gg \frac{kT}{q}\)</span>, <span class="math">\(f_A \approx \psi_s \left(N_a - N_d\right)\)</span>. This is the reason that nMOS bulk charge is often written as <span class="math">\(Q_{bA}&#39; \approx - \sqrt{2q\epsilon_s N_a \psi_s}\)</span>.</p>
 <p>With <span class="math">\(Q_b&#39;\)</span> known, it can be used to find <span class="math">\(Q_i&#39;\)</span> from the fact that the total semiconductor charge is the sum of inversion plus depletion charges.</p>
@@ -5954,12 +5954,13 @@ C_s&#39; &amp;= \mbox{sign}(\psi_s) \sqrt{\frac{q\epsilon_s}{2 f(\psi_s)}} \frac
 <p>As proven in Section 9.2, the first version of <span class="math">\(C_s&#39;\)</span> is conducive to applying L'Hôpital's rule. Therefore, one recasts <span class="math">\(C_b&#39;\)</span> into a similar form.</p>
 <p><span class="math">\[\begin{aligned}
 C_b&#39; &amp;= -q \frac{p(\psi_s) - p_o}{E_s}  \\
-  &amp;= \mbox{sign}(\psi_s) \sqrt{\frac{q\epsilon_s}{2 f(\psi_s)}} \left[\frac{df(\psi_s)}{d\psi_s} - (n(\psi_s) - n_o)\right]
+  &amp;= \mbox{sign}(\psi_s) \sqrt{\frac{q\epsilon_s}{2 f(\psi_s)}} \left[\frac{df(\psi_s)}{d\psi_s} - (n(\psi_s) - n_o)\right]  \\
+  &amp;= \mbox{sign}(\psi_s) H \sqrt{\frac{q\epsilon_s}{2}}
 \end{aligned}\]</span></p>
-<p>One groups the portions that cause the zero/zero condition into a variable named <span class="math">\(H\)</span> (different from the <span class="math">\(H\)</span> above) that is then squared to remove the square-root in the denominator.</p>
+<p>The portion of <span class="math">\(C_b&#39;\)</span> that causes the zero/zero condition has been grouped into a variable named <span class="math">\(H\)</span> (different from the <span class="math">\(H\)</span> in section 9.1.1). This quantity is squared to remove the square-root in the denominator (this allows L'Hôpital's rule to be successfully applied).</p>
 <p><span class="math">\[\begin{aligned}
-H^2 &amp;= \frac{\left[\frac{df}{d\psi_s} - (n - n_o)\right]^2}{f}  \\
-  &amp;= \frac{\left(\frac{df}{d\psi_s}\right)^2 - 2 \frac{df}{d\psi_s} (n - n_o) + (n - n_o)^2}{f}
+H &amp;= \frac{\left[\frac{df(\psi_s)}{d\psi_s} - (n(\psi_s) - n_o)\right]}{\sqrt{f(\psi_s)}}  \\
+H^2 &amp;= \frac{\left(\frac{df}{d\psi_s}\right)^2 - 2 \frac{df}{d\psi_s} (n - n_o) + (n - n_o)^2}{f}
 \end{aligned}\]</span></p>
 <p>Next, one applies L'Hôpital's rule to <span class="math">\(H^2\)</span>.</p>
 <p><span class="math">\[\begin{aligned}
@@ -6405,6 +6406,9 @@ C_{gb}&#39; &amp;= \frac{C_s&#39; C_{ox}&#39;}{C_s&#39; + C_{ox}&#39;}  \\
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://h-gens.github.io/creating-a-grid-of-matplotlib-figures.html">Creating a grid of matplotlib figures</a>
+      </li>
+      <li class="post">
           <a href="https://h-gens.github.io/cycling-across-the-us.html">Cycling across the U.S.</a>
       </li>
       <li class="post">
@@ -6415,9 +6419,6 @@ C_{gb}&#39; &amp;= \frac{C_s&#39; C_{ox}&#39;}{C_s&#39; + C_{ox}&#39;}  \\
       </li>
       <li class="post">
           <a href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html">Controlling instruments over GPIB with SCPI</a>
-      </li>
-      <li class="post">
-          <a href="https://h-gens.github.io/pi-and-pythagoras.html">Pi and Pythagoras</a>
       </li>
     </ul>
   </section>

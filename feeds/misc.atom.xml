@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-11-21T14:21:00+01:00</updated><entry><title>Recovering a lost combination</title><link href="https://h-gens.github.io/recovering-a-lost-combination.html" rel="alternate"></link><updated>2015-11-21T14:21:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-11-21:recovering-a-lost-combination.html</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-12-13T16:49:00+01:00</updated><entry><title>Creating a grid of matplotlib figures</title><link href="https://h-gens.github.io/creating-a-grid-of-matplotlib-figures.html" rel="alternate"></link><updated>2015-12-13T16:49:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-12-13:creating-a-grid-of-matplotlib-figures.html</id><summary type="html">&lt;p&gt;Whenever I'm analyzing a dataset, I tend to create lots of different plots (e.g., plotting y vs x for group 1, again for group 2, plotting y vs a different x, etc.).  Usually, it's a lot more instructive to view all these plots at once so that differences can be readily viewed.  Since it rapidly becomes tedious to manually position/resize the automatically-created plotting windows, I wrote a tool called &lt;a href="http://github.com/h-gens/matplotgrid"&gt;&lt;strong&gt;matplotgrid&lt;/strong&gt;&lt;/a&gt; that tiles the windows.  Below is a demonstration of what the tiling looks like.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Example 1 result" src="images/2015-12-13-matplotgrid/example1.png" /&gt;  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;from matplotgrid import GridCreator; gc = GridCreator(); gc.create(8)  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This tool will be especially useful for those who work within the Spyder IDE (&lt;a href="https://winpython.github.io/"&gt;https://winpython.github.io/&lt;/a&gt;) and execute scripts via the Spyder console (a MATLAB-like experience).  &lt;/p&gt;
+&lt;h2&gt;Arguments&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://github.com/h-gens/matplotgrid"&gt;&lt;strong&gt;matplotgrid&lt;/strong&gt;&lt;/a&gt; is controlled by four main arguments: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Number of rows in the grid.  &lt;/li&gt;
+&lt;li&gt;Number of columns in the grid.  &lt;/li&gt;
+&lt;li&gt;The monitors to use.  &lt;ul&gt;
+&lt;li&gt;If this is an integer, then it represents the monitor at which the tiling begins.  &lt;/li&gt;
+&lt;li&gt;If this is a list of integers, then tiling will be constrained to the monitors contained in the list.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Number of figures to create.  &lt;ul&gt;
+&lt;li&gt;If this is an integer, then N figures are created numbered 1 through N.  &lt;/li&gt;
+&lt;li&gt;If this is a list of integers of length N, then N figures are created numbered according to the content of the list.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Behavior&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://github.com/h-gens/matplotgrid"&gt;&lt;strong&gt;matplotgrid&lt;/strong&gt;&lt;/a&gt; automatically detects the number of monitors and their resolutions through the &lt;a href="https://github.com/rr-/screeninfo"&gt;&lt;strong&gt;screeninfo&lt;/strong&gt;&lt;/a&gt; module.  &lt;/li&gt;
+&lt;li&gt;Unless otherwise instructed by an argument, the grid is first constructed on the left-most monitor.  The first figure is created in the top-left of that first monitor.  If enough figures have been created such that the right-most monitor has been filled, then figure creation wraps back around and begins again on the left-most monitor.  &lt;/li&gt;
+&lt;li&gt;Integer row/columns are the most appropriate, but fractional values are allowed (the grid will just extend off-screen).  &lt;/li&gt;
+&lt;li&gt;The same row/column settings are applied to each monitor, meaning figure size will vary between monitors with different resolution.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;NOTE&lt;/em&gt;: &lt;a href="http://github.com/h-gens/matplotgrid"&gt;&lt;strong&gt;matplotgrid&lt;/strong&gt;&lt;/a&gt;'s goal is to pack the figures as close as possible.  How successful this is depends on the operating system and theme because these determine the border surrounding the figure.  The largest contribution to the border is the titlebar (in Windows this contains the window's title and the minimize/maximize/close icons).  I chose default values that reflected the border for the Windows 7 "Aero" theme, but this is configurable via the &lt;code&gt;prop&lt;/code&gt; kwarg when initializing the GridCreator class.  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Suggestions&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;As figures are made smaller, the margins (where axis labels are written) are not automatically adjusted.  The easiest solution is to call matplotlib.pyplot.tight_layout() on each figure.  &lt;/li&gt;
+&lt;li&gt;Figures will only be created automatically if interactive mode has been enabled with &lt;code&gt;matplotlib.pyplot.ion()&lt;/code&gt; or &lt;code&gt;matplotlib.interactive(True)&lt;/code&gt;.  My startup script for Spyder is spyderlib\scientific_startup.py, which turns interactive mode on automatically.  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Usage&lt;/h2&gt;
+&lt;p&gt;Example 1  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotgrid&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;  
+&lt;span class="c"&gt;# Define a grid with 3 rows and 6 columns.  &lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+&lt;span class="c"&gt;# Create 8 figures.  &lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Example 2  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotgrid&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;  
+&lt;span class="c"&gt;# create four figures, numbered 9, 10, 11, 12.  &lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Example 3  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotgrid&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;  
+&lt;span class="c"&gt;# Create four figures on the second monitor from left.&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Example 4  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotgrid&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;  
+&lt;span class="c"&gt;# Create twenty-two figures but constrain all figures to the first&lt;/span&gt;
+&lt;span class="c"&gt;# monitor from left.&lt;/span&gt;
+&lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;  
+&lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The repository can be found &lt;a href="http://github.com/h-gens/matplotgrid"&gt;here&lt;/a&gt;.  &lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Recovering a lost combination</title><link href="https://h-gens.github.io/recovering-a-lost-combination.html" rel="alternate"></link><updated>2015-11-21T14:21:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-11-21:recovering-a-lost-combination.html</id><summary type="html">&lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I lost the combination to an old Master Lock of mine. Fortunately, figuring out the combination for my type of lock is a &lt;a href="http://www.wikihow.com/Crack-a-%22Master-Lock%22-Combination-Lock"&gt;well-known process&lt;/a&gt;. Unfortunately, the previous link's method for finding the third value in the combination did not work for me, but I &lt;a href="http://masterunlocked.com/index1.html"&gt;found instructions&lt;/a&gt; that were very helpful. Once the third value is found there is an algorithm to generate 80 possible combinations, which is where Python comes in.&lt;/p&gt;
 &lt;h4 id="procedure-outline"&gt;Procedure outline&lt;/h4&gt;
