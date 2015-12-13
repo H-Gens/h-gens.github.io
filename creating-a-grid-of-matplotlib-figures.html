@@ -1805,7 +1805,7 @@ jQuery(document).ready(function($) {
 <time datetime="2015-12-13T16:49:00+01:00" pubdate>Sun 13 December 2015</time>    </p>
 </header>
 
-  <div class="entry-content"><p>Whenever I'm analyzing a dataset, I tend to create lots of different plots (e.g., plotting y vs x for group 1, again for group 2, plotting y vs a different x, etc.).  Usually, it's a lot more instructive to view all these plots at once so that differences can be readily viewed.  Since it rapidly becomes tedious to manually position/resize the automatically-created plotting windows, I wrote a tool called <a href="http://github.com/h-gens/matplotgrid"><strong>matplotgrid</strong></a> that tiles the windows.  Below is a demonstration of what the tiling looks like.  </p>
+  <div class="entry-content"><p>Whenever I'm analyzing a dataset, I tend to create lots of different plots (e.g., y-axis transforms, different x-variables, etc.).  Usually, it's a lot more instructive to view all these plots at once so that differences can be readily viewed.  Since it rapidly becomes tedious to manually position/resize the automatically-created plotting windows, I wrote a tool called <a href="http://github.com/h-gens/matplotgrid"><strong>matplotgrid</strong></a> that tiles the windows.  Below is a demonstration of what the tiling looks like.  </p>
 <p><img alt="Example 1 result" src="images/2015-12-13-matplotgrid/example1.png" />  </p>
 <blockquote>
 <p>from matplotgrid import GridCreator; gc = GridCreator(); gc.create(8)  </p>
@@ -1835,7 +1835,7 @@ jQuery(document).ready(function($) {
 <li>The same row/column settings are applied to each monitor, meaning figure size will vary between monitors with different resolution.  </li>
 </ul>
 <blockquote>
-<p><em>NOTE</em>: <a href="http://github.com/h-gens/matplotgrid"><strong>matplotgrid</strong></a>'s goal is to pack the figures as close as possible.  How successful this is depends on the operating system and theme because these determine the border surrounding the figure.  The largest contribution to the border is the titlebar (in Windows this contains the window's title and the minimize/maximize/close icons).  I chose default values that reflected the border for the Windows 7 "Aero" theme, but this is configurable via the <code>prop</code> kwarg when initializing the GridCreator class.  </p>
+<p><em>NOTE</em>: <a href="http://github.com/h-gens/matplotgrid"><strong>matplotgrid</strong></a>'s goal is to pack the figures as close as possible.  How successful this is depends on the operating system and theme because these determine the border surrounding the figure.  The largest contribution to the border is the titlebar (in Windows this contains the window's title and the minimize/maximize/close icons).  I chose default values that reflected the border for the Windows 7 "Aero" theme.  These defaults are configurable via the <code>prop</code> kwarg when initializing the GridCreator class.  </p>
 </blockquote>
 <h2>Suggestions</h2>
 <ul>
@@ -1853,23 +1853,20 @@ jQuery(document).ready(function($) {
 
 
 <p>Example 2  </p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">matplotgrid</span> <span class="kn">import</span> <span class="n">GridCreator</span>  
-<span class="c"># create four figures, numbered 9, 10, 11, 12.  </span>
+<div class="highlight"><pre><span class="c"># create four figures, numbered 9, 10, 11, 12.  </span>
 <span class="n">gc</span><span class="o">.</span><span class="n">create</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
 </pre></div>
 
 
 <p>Example 3  </p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">matplotgrid</span> <span class="kn">import</span> <span class="n">GridCreator</span>  
-<span class="c"># Create four figures on the second monitor from left.</span>
+<div class="highlight"><pre><span class="c"># Create four figures on the second monitor from left.</span>
 <span class="n">gc</span> <span class="o">=</span> <span class="n">GridCreator</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  
 <span class="n">gc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Example 4  </p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">matplotgrid</span> <span class="kn">import</span> <span class="n">GridCreator</span>  
-<span class="c"># Create twenty-two figures but constrain all figures to the first</span>
+<div class="highlight"><pre><span class="c"># Create twenty-two figures but constrain all figures to the first</span>
 <span class="c"># monitor from left.</span>
 <span class="n">gc</span> <span class="o">=</span> <span class="n">GridCreator</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>  
 <span class="n">gc</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
