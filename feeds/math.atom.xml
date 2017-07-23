@@ -1,208 +1,1203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/math.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-03-14T03:14:00+01:00</updated><entry><title>Pi and Pythagoras</title><link href="https://h-gens.github.io/pi-and-pythagoras.html" rel="alternate"></link><updated>2015-03-14T03:14:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-03-14:pi-and-pythagoras.html</id><summary type="html">&lt;p&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;center&gt;
-&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_1.png"&gt;
-&lt;/center&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens - math</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/math.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2015-03-14T03:14:00-05:00</updated><entry><title>Pi and Pythagoras</title><link href="https://h-gens.github.io/pi-and-pythagoras.html" rel="alternate"></link><published>2015-03-14T03:14:00-05:00</published><updated>2015-03-14T03:14:00-05:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-03-14:/pi-and-pythagoras.html</id><summary type="html">&lt;p&gt;This post contains a derivation of a recurrence relation that can be used to calculate $\pi$.  While it's not useful for the purpose of calculating to any decimal place imaginable, what's notable is that it only uses the Pythagorean thereom and should therefore be easy to follow.  Unsurprisingly, the recurrence relation is neither original nor unique because it falls under the category of using polygons to compute $\pi$ (&lt;a href="https://en.wikipedia.org/wiki/Pi#Polygon_approximation_era"&gt;attributed to Archimedes&lt;/a&gt;).  At the end of the notebook, the derived recurrence relation is implemented in code and run.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area &gt; div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area &gt; div.highlight &gt; pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+&lt;/style&gt;
+&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
+&lt;style type="text/css"&gt;
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="introduction"&gt;1.0 Introduction&lt;/h2&gt;
-&lt;p&gt;This post contains a derivation of a recurrence relation that can be used to calculate &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. While it's not useful for the purpose of calculating to any decimal place imaginable, what's notable is that it only uses the Pythagorean thereom and should therefore be easy to follow. Unsurprisingly, the recurrence relation is neither original nor unique because it falls under the category of using polygons to compute &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; (&lt;a href="https://en.wikipedia.org/wiki/Pi#Polygon_approximation_era"&gt;attributed to Archimedes&lt;/a&gt;). At the end of the notebook, the derived recurrence relation is implemented in code and run.&lt;/p&gt;
-&lt;p&gt;There is more than one way to use polygons in the computation of &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. One could follow &lt;a href="http://itech.fgcu.edu/faculty/clindsey/mhf4404/archimedes/archimedes.html"&gt;Archimedes' proof&lt;/a&gt;, which uses a theorem from Euclid's &lt;em&gt;Elements&lt;/em&gt;. There are other &lt;a href="http://www.themathpage.com/atrig/pi.htm"&gt;discussions&lt;/a&gt; that make use of trigonometric functions. Of course, one could just use the Pythagorean theorem by reducing the n-sided polygons to right triangles, as done here.&lt;/p&gt;
-&lt;p&gt;I went through a few pages of google search results and found similar posts. (I posted this anyway because it was fun and mainly an excuse to create an IPython notebook.) The first link's code can achieve a much larger decimal place than that shown here because the author used a specialized decimal type instead of the default float type available in Python.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.craig-wood.com/nick/articles/pi-archimedes/"&gt;Pi - Archimedes&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.physicsinsights.org/pi_from_pythagoras-1.html"&gt;Finding π from Pythagoras's Theorem&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;A good historical account of &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; that I found while briefly searching is found &lt;a href="http://www.math.rutgers.edu/~cherlin/History/Papers2000/wilson.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;center&gt;&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_1.png"&gt;&lt;/center&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="problem-set-up"&gt;2.0 Problem set up&lt;/h2&gt;
-&lt;p&gt;Consider one quarter of a circle with arbitrary radius, &lt;span class="math"&gt;\(r\)&lt;/span&gt;, between &lt;span class="math"&gt;\(0\)&lt;/span&gt; and &lt;span class="math"&gt;\(90\)&lt;/span&gt; degrees. The below will mathematically describe the outer perimeter of many triangles drawn inside this region. The outer perimeter is composed of the triangles whose hypotneuses are closest to the circle's arc. The quantity of triangles drawn will be proportional to an integer index, &lt;span class="math"&gt;\(n\)&lt;/span&gt;. All variables make reference to &lt;span class="math"&gt;\(n\)&lt;/span&gt; via a subscript.&lt;/p&gt;
-&lt;h4 id="variable-definitions"&gt;Variable definitions&lt;/h4&gt;
+&lt;h2 id="1.0-Introduction"&gt;1.0 Introduction&lt;a class="anchor-link" href="#1.0-Introduction"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;This post contains a derivation of a recurrence relation that can be used to calculate $\pi$.  While it's not useful for the purpose of calculating to any decimal place imaginable, what's notable is that it only uses the Pythagorean thereom and should therefore be easy to follow.  Unsurprisingly, the recurrence relation is neither original nor unique because it falls under the category of using polygons to compute $\pi$ (&lt;a href="https://en.wikipedia.org/wiki/Pi#Polygon_approximation_era"&gt;attributed to Archimedes&lt;/a&gt;).  At the end of the notebook, the derived recurrence relation is implemented in code and run.&lt;/p&gt;
+&lt;p&gt;There is more than one way to use polygons in the computation of $\pi$.  One could follow &lt;a href="http://itech.fgcu.edu/faculty/clindsey/mhf4404/archimedes/archimedes.html"&gt;Archimedes' proof&lt;/a&gt;, which uses a theorem from Euclid's &lt;em&gt;Elements&lt;/em&gt;.  There are other &lt;a href="http://www.themathpage.com/atrig/pi.htm"&gt;discussions&lt;/a&gt; that make use of trigonometric functions.  Of course, one could just use the Pythagorean theorem by reducing the n-sided polygons to right triangles, as done here.&lt;/p&gt;
+&lt;p&gt;I went through a few pages of google search results and found similar posts.  (I posted this anyway because it was fun and mainly an excuse to create an IPython notebook.)  The first link's code can achieve a much larger decimal place than that shown here because the author used a specialized decimal type instead of the default float type available in Python.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(r\)&lt;/span&gt; is the radius.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(T_n\)&lt;/span&gt; refers to any right triangle newly established at the &lt;span class="math"&gt;\(n\)&lt;/span&gt;-th iteration.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(L_n\)&lt;/span&gt; refers to any right triangle's leg.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(H_n\)&lt;/span&gt; refers to the hypotneuse of any small triangle (&lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;) that composes a portion of the outer perimeter.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(P_n\)&lt;/span&gt; is the outer perimeter.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.craig-wood.com/nick/articles/pi-archimedes/"&gt;Pi - Archimedes&lt;/a&gt;  &lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.physicsinsights.org/pi_from_pythagoras-1.html"&gt;Finding π from Pythagoras's Theorem&lt;/a&gt;.  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="subscript-meanings"&gt;Subscript meanings&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Subscripts &lt;span class="math"&gt;\(B\)&lt;/span&gt; and &lt;span class="math"&gt;\(S\)&lt;/span&gt; refer to any big and small triangles, respectively.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(L_{nB}\)&lt;/span&gt; indicates a leg that is unique to &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(L_{nS}\)&lt;/span&gt; indicates a leg that is unique to &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;span class="math"&gt;\(L_{nC}\)&lt;/span&gt; indicates a leg that is common to &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt; and &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Below are explanatory images that indicate most of the above variables. They are for &lt;span class="math"&gt;\(n = 1\)&lt;/span&gt;, and the procedure to arrive at the drawn line segments is outlined in the following subsections. The first figure indicates triangles, and the second figure indicates line segment lengths. Omitted from the second figure are the radius labels (the radii are at &lt;span class="math"&gt;\(0^o\)&lt;/span&gt;, &lt;span class="math"&gt;\(45^o\)&lt;/span&gt;, and &lt;span class="math"&gt;\(90^o\)&lt;/span&gt;). The figures are an attempt to convey that there are two sets (big/small) of identical triangles at each iteration, and that by calculating the properties of one triangle in each set, all other triangles' properties are known.&lt;/p&gt;
-&lt;p&gt;Blue lines always correspond to refinements made at the previous iteration. Green lines are the new refinements made at the current iteration. This combination of line segments produces the set of &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt; and &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; at iteration &lt;span class="math"&gt;\(n\)&lt;/span&gt;.&lt;/p&gt;
-&lt;center&gt;
-&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_2.png"&gt; &lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_3.png"&gt;
-&lt;/center&gt;
+&lt;p&gt;A good historical account of $\pi$ that I found while briefly searching is found &lt;a href="http://www.math.rutgers.edu/~cherlin/History/Papers2000/wilson.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="2.0-Problem-set-up"&gt;2.0 Problem set up&lt;a class="anchor-link" href="#2.0-Problem-set-up"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Consider one quarter of a circle with arbitrary radius, $r$, between $0$ and $90$ degrees.  The below will mathematically describe the outer perimeter of many triangles drawn inside this region.  The outer perimeter is composed of the triangles whose hypotneuses are closest to the circle's arc.  The quantity of triangles drawn will be proportional to an integer index, $n$.  All variables make reference to $n$ via a subscript.&lt;/p&gt;
+&lt;h4 id="Variable-definitions"&gt;Variable definitions&lt;a class="anchor-link" href="#Variable-definitions"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;$r$ is the radius.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$T_n$ refers to any right triangle newly established at the $n$-th iteration.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$L_n$ refers to any right triangle's leg.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$H_n$ refers to the hypotneuse of any small triangle ($T_{nS}$) that composes a portion of the outer perimeter.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$P_n$ is the outer perimeter.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="Subscript-meanings"&gt;Subscript meanings&lt;a class="anchor-link" href="#Subscript-meanings"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Subscripts $B$ and $S$ refer to any big and small triangles, respectively.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$L_{nB}$ indicates a leg that is unique to $T_{nB}$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$L_{nS}$ indicates a leg that is unique to $T_{nS}$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;$L_{nC}$ indicates a leg that is common to $T_{nB}$ and $T_{nS}$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Below are explanatory images that indicate most of the above variables.  They are for $n = 1$, and the procedure to arrive at the drawn line segments is outlined in the following subsections.  The first figure indicates triangles, and the second figure indicates line segment lengths.  Omitted from the second figure are the radius labels (the radii are at $0^o$, $45^o$, and $90^o$).  The figures are an attempt to convey that there are two sets (big/small) of identical triangles at each iteration, and that by calculating the properties of one triangle in each set, all other triangles' properties are known.&lt;/p&gt;
+&lt;p&gt;Blue lines always correspond to refinements made at the previous iteration.  Green lines are the new refinements made at the current iteration.  This combination of line segments produces the set of $T_{nB}$ and $T_{nS}$ at iteration $n$.&lt;/p&gt;
+&lt;center&gt;&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_2.png"&gt; &lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_3.png"&gt;&lt;/center&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="3.0-Analysis"&gt;3.0 Analysis&lt;a class="anchor-link" href="#3.0-Analysis"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
-
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="analysis-for-n-0"&gt;3.1 Analysis for n = 0&lt;/h3&gt;
-&lt;p&gt;Inside the starting region a right triangle is created by connecting points &lt;span class="math"&gt;\((0, r)\)&lt;/span&gt; and &lt;span class="math"&gt;\((r, 0)\)&lt;/span&gt;. The hypotneuse can be easily calculated by the Pythagorean thereom, and for &lt;span class="math"&gt;\(n=0\)&lt;/span&gt; the hypotneuse happens to be equal to the outer perimeter.&lt;/p&gt;
-&lt;center&gt;
-&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_4.png"&gt;
-&lt;/center&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+&lt;h3 id="3.1-Analysis-for-n-=-0"&gt;3.1 Analysis for n = 0&lt;a class="anchor-link" href="#3.1-Analysis-for-n-=-0"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Inside the starting region a right triangle is created by connecting points $(0, r)$ and $(r, 0)$.  The hypotneuse can be easily calculated by the Pythagorean thereom, and for $n=0$ the hypotneuse happens to be equal to the outer perimeter.&lt;/p&gt;
+&lt;center&gt;&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_4.png"&gt;&lt;/center&gt;$$
 \begin{aligned}
 H_0 &amp;amp;= \sqrt{r^2 + r^2} \\
 P_0 &amp;amp;= H_0 = \sqrt{2} \cdot r
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
+$$
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="analysis-for-n-1"&gt;3.2 Analysis for n = 1&lt;/h3&gt;
-&lt;p&gt;The previous right triangle's hypotneuse (&lt;span class="math"&gt;\(H_0\)&lt;/span&gt;) is bisected by a line from the origin to the circle's perimeter at an angle exactly halfway between the legs (or &lt;a href="https://en.wikipedia.org/wiki/Cathetus"&gt;catheti&lt;/a&gt;) of &lt;span class="math"&gt;\(T_0\)&lt;/span&gt;. This action creates four new right triangles since the hypotneuse of &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; forms a right angle with the bisecting line. These new triangles are two of &lt;span class="math"&gt;\(T_{1B}\)&lt;/span&gt; and two of &lt;span class="math"&gt;\(T_{1S}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;center&gt;
-&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_5.png"&gt;
-&lt;/center&gt;
-&lt;p&gt;Since the hypotneuse of &lt;span class="math"&gt;\(T_0\)&lt;/span&gt; has been bisected, the leg that is common to any &lt;span class="math"&gt;\(T_{1B}\)&lt;/span&gt;, &lt;span class="math"&gt;\(T_{1S}\)&lt;/span&gt; pair is known (this is &lt;span class="math"&gt;\(L_{1C}\)&lt;/span&gt;). The hypotneuse of &lt;span class="math"&gt;\(T_{1B}\)&lt;/span&gt; is known because it is just &lt;span class="math"&gt;\(T_0\)&lt;/span&gt;'s leg, &lt;span class="math"&gt;\(r\)&lt;/span&gt;. Therefore, we can solve for the missing leg, &lt;span class="math"&gt;\(L_{1B}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+&lt;h3 id="3.2-Analysis-for-n-=-1"&gt;3.2 Analysis for n = 1&lt;a class="anchor-link" href="#3.2-Analysis-for-n-=-1"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The previous right triangle's hypotneuse ($H_0$) is bisected by a line from the origin to the circle's perimeter at an angle exactly halfway between the legs (or &lt;a href="https://en.wikipedia.org/wiki/Cathetus"&gt;catheti&lt;/a&gt;) of $T_0$.  This action creates four new right triangles since the hypotneuse of $T_0$ forms a right angle with the bisecting line.  These new triangles are two of $T_{1B}$ and two of $T_{1S}$.&lt;/p&gt;
+&lt;center&gt;&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_5.png"&gt;&lt;/center&gt;&lt;p&gt;Since the hypotneuse of $T_0$ has been bisected, the leg that is common to any $T_{1B}$, $T_{1S}$ pair is known (this is $L_{1C}$).  The hypotneuse of $T_{1B}$ is known because it is just $T_0$'s leg, $r$.  Therefore, we can solve for the missing leg, $L_{1B}$.&lt;/p&gt;
+$$
 \begin{aligned}
 L_{1C} &amp;amp;= \frac{H_0}{2} \\
 L_{1B} &amp;amp;= \sqrt{r^2 - L_{1C}^2}
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The line segment labeled &lt;span class="math"&gt;\(L_{1S}\)&lt;/span&gt; is just the radius minus &lt;span class="math"&gt;\(L_{1B}\)&lt;/span&gt;. This permits calculation of &lt;span class="math"&gt;\(H_1\)&lt;/span&gt;, which is the hypotneuse of the small triangle &lt;span class="math"&gt;\(T_{1S}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;The line segment labeled $L_{1S}$ is just the radius minus $L_{1B}$.  This permits calculation of $H_1$, which is the hypotneuse of the small triangle $T_{1S}$.&lt;/p&gt;
+$$
 \begin{aligned}
 L_{1S} &amp;amp;= r - L_{1B} \\
 H_1 &amp;amp;= \sqrt{L_{1S}^2 + L_{1C}^2}
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Finally, the outer perimeter defined by the two new small right triangles is twice the value of a single small triangle's hypotneuse, &lt;span class="math"&gt;\(H_1\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;Finally, the outer perimeter defined by the two new small right triangles is twice the value of a single small triangle's hypotneuse, $H_1$.&lt;/p&gt;
+$$
 \begin{aligned}
 P_1 &amp;amp;= 2 \cdot H_1 \\
   &amp;amp;= 2 \cdot \sqrt{L_{1S}^2 + L_{1C}^2}
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
+$$
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="analysis-at-n-2-and-above"&gt;3.3 Analysis at n = 2 and above&lt;/h3&gt;
-&lt;p&gt;As the index increases, the efforts in the above are repeated. &lt;span class="math"&gt;\(2^{n+1}\)&lt;/span&gt; right triangles are created, of which half are &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt; and half are &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;. Any &lt;span class="math"&gt;\(T_{nB}\)&lt;/span&gt; will have a leg that's shared with a &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; called &lt;span class="math"&gt;\(L_{nC}\)&lt;/span&gt;. This common leg is exactly half the hypotneuse from the previous iteration. Using this information one can solve for &lt;span class="math"&gt;\(L_{nB}\)&lt;/span&gt;, &lt;span class="math"&gt;\(L_{nS}\)&lt;/span&gt;, and &lt;span class="math"&gt;\(H_n\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+&lt;h3 id="3.3-Analysis-at-n-=-2-and-above"&gt;3.3 Analysis at n = 2 and above&lt;a class="anchor-link" href="#3.3-Analysis-at-n-=-2-and-above"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;As the index increases, the efforts in the above are repeated.  $2^{n+1}$ right triangles are created, of which half are $T_{nB}$ and half are $T_{nS}$.  Any $T_{nB}$ will have a leg that's shared with a $T_{nS}$ called $L_{nC}$.  This common leg is exactly half the hypotneuse from the previous iteration.  Using this information one can solve for $L_{nB}$, $L_{nS}$, and $H_n$.&lt;/p&gt;
+$$
 \begin{aligned}
 L_{nC} &amp;amp;= \frac{H_{n-1}}{2} \\
 L_{nB} &amp;amp;= \sqrt{r^2 - L_{nC}^2} \\
 L_{nS} &amp;amp;= r - L_{nB}
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;With the legs of &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; known, one can find the hypotneuse of &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; using the Pythagorean theorem.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;With the legs of $T_{nS}$ known, one can find the hypotneuse of $T_{nS}$ using the Pythagorean theorem.&lt;/p&gt;
+$$
 \begin{aligned}
 H_n &amp;amp;= \sqrt{L_{nS}^2 + L_{nC}^2} \\
   &amp;amp;= \sqrt{\left(r - \sqrt{r^2 - \left(\frac{H_{n-1}}{2}\right)^2}\right)^2 + \left(\frac{H_{n-1}}{2}\right)^2}
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The above is a recurrence relation for &lt;span class="math"&gt;\(H_n\)&lt;/span&gt; for all &lt;span class="math"&gt;\(n &amp;gt; 0\)&lt;/span&gt;. The initial value derived above, &lt;span class="math"&gt;\(H_0\)&lt;/span&gt;, is just &lt;span class="math"&gt;\(\sqrt{2} \cdot r\)&lt;/span&gt;. The perimeter at an arbitrary index is comprised of &lt;span class="math"&gt;\(2^n\)&lt;/span&gt; right triangles' hypotneuses.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;The above is a recurrence relation for $H_n$ for all $n &amp;gt; 0$.  The initial value derived above, $H_0$, is just $\sqrt{2} \cdot r$.  The perimeter at an arbitrary index is comprised of $2^n$ right triangles' hypotneuses.&lt;/p&gt;
+$$
 \begin{aligned}
 P_n &amp;amp;= 2^n \cdot H_n \\
   &amp;amp;= 2^n \cdot \sqrt{\left(r - \sqrt{r^2 - \frac{H_{n-1}^2}{4}}\right)^2 + \frac{H_{n-1}^2}{4}}
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Below are plots for &lt;span class="math"&gt;\(n = 2\)&lt;/span&gt; and &lt;span class="math"&gt;\(n = 3\)&lt;/span&gt;. Only &lt;span class="math"&gt;\(T_n\)&lt;/span&gt; and &lt;span class="math"&gt;\(T_{n-1}\)&lt;/span&gt; are drawn to reduce graphical clutter. The new iteration's triangles become more difficult to see as the index increases so plots of &lt;span class="math"&gt;\(n \geq 4\)&lt;/span&gt; are not shown.&lt;/p&gt;
-&lt;center&gt;
-&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_6.png"&gt;&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_7.png"&gt;
-&lt;/center&gt;
+$$&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Below are plots for $n = 2$ and $n = 3$.  Only $T_n$ and $T_{n-1}$ are drawn to reduce graphical clutter.  The new iteration's triangles become more difficult to see as the index increases so plots of $n \geq 4$ are not shown.&lt;/p&gt;
+&lt;center&gt;&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_6.png"&gt;&lt;img src="../images/2015-03-14-pi-and-pythagoras/figure_7.png"&gt;&lt;/center&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="computing-pi"&gt;4.0 Computing &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;&lt;/h2&gt;
-&lt;p&gt;The circumference of the circle is approximated by &lt;span class="math"&gt;\(4 \cdot P_n\)&lt;/span&gt;, where the factor of four is present since we only considered the region between &lt;span class="math"&gt;\(0\)&lt;/span&gt; and &lt;span class="math"&gt;\(90\)&lt;/span&gt; degrees (all other regions are identical). The quantity &lt;span class="math"&gt;\(4 \cdot P_n\)&lt;/span&gt; will always be slightly smaller than the true circumference but would converge in the limit as &lt;span class="math"&gt;\(n \rightarrow \infty\)&lt;/span&gt;. Equating &lt;span class="math"&gt;\(4 \cdot P_n\)&lt;/span&gt; with the true circumference, &lt;span class="math"&gt;\(\pi \cdot 2 \cdot r\)&lt;/span&gt;, and solving for &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; yields:&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+&lt;h2 id="4.0-Computing-$\pi$"&gt;4.0 Computing $\pi$&lt;a class="anchor-link" href="#4.0-Computing-$\pi$"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The circumference of the circle is approximated by $4 \cdot P_n$, where the factor of four is present since we only considered the region between $0$ and $90$ degrees (all other regions are identical).  The quantity $4 \cdot P_n$ will always be slightly smaller than the true circumference but would converge in the limit as $n \rightarrow \infty$.  Equating $4 \cdot P_n$ with the true circumference, $\pi \cdot 2 \cdot r$, and solving for $\pi$ yields:&lt;/p&gt;
+$$
 \begin{aligned}
 \pi &amp;amp;= \lim_{n\rightarrow\infty} \frac{2 \cdot P_n}{r}
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Since computing something to infinity is not possible, let's accept that we're stuck with an approximation and recognize it using &lt;span class="math"&gt;\(\approx\)&lt;/span&gt; in the below expression for &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. These equations are readily implemented in code with a &lt;code&gt;for&lt;/code&gt; loop and can be evaluated for as large an &lt;span class="math"&gt;\(n\)&lt;/span&gt; that our computing resources will permit.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;Since computing something to infinity is not possible, let's accept that we're stuck with an approximation and recognize it using $\approx$ in the below expression for $\pi$.  These equations are readily implemented in code with a &lt;code&gt;for&lt;/code&gt; loop and can be evaluated for as large an $n$ that our computing resources will permit.&lt;/p&gt;
+$$
 \begin{aligned}
 H_0 &amp;amp;= \sqrt{2} \cdot r  \\
 H_n &amp;amp;= \sqrt{\left(r - \sqrt{r^2 - \frac{H_{n-1}^2}{4}}\right)^2 + \frac{H_{n-1}^2}{4}} \mbox{ , for } n&amp;gt;0  \\
 \pi &amp;amp;\approx \frac{2^{n+1}}{r} \cdot H_n
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The downside to this approach is that as &lt;span class="math"&gt;\(n\)&lt;/span&gt; increases, &lt;span class="math"&gt;\(H_n\)&lt;/span&gt; gets smaller and smaller. For example, consider the unit circle with &lt;span class="math"&gt;\(r = 1\)&lt;/span&gt;. As &lt;span class="math"&gt;\(n\)&lt;/span&gt; increases, the above equation presents a precision challenge for any computer since it involves the difference of a constant (unity) with an ever-decreasing quantity (&lt;span class="math"&gt;\(H_{n-1}^2/4\)&lt;/span&gt;) that approaches zero as &lt;span class="math"&gt;\(n \rightarrow \infty\)&lt;/span&gt;.&lt;/p&gt;
-&lt;h3 id="in-terms-of-incremental-area"&gt;4.1 In terms of incremental area&lt;/h3&gt;
-&lt;p&gt;It is also possible to use the triangles' areas to compute &lt;span class="math"&gt;\(\pi\)&lt;/span&gt;. The additional area contributed by each iteration can be computed by analyzing &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt;, the area of which is written below by using the Pythagorean theorem for &lt;span class="math"&gt;\(L_{nS}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;The downside to this approach is that as $n$ increases, $H_n$ gets smaller and smaller.  For example, consider the unit circle with $r = 1$.  As $n$ increases, the above equation presents a precision challenge for any computer since it involves the difference of a constant (unity) with an ever-decreasing quantity ($H_{n-1}^2/4$) that approaches zero as $n \rightarrow \infty$.&lt;/p&gt;
+&lt;h3 id="4.1-In-terms-of-incremental-area"&gt;4.1 In terms of incremental area&lt;a class="anchor-link" href="#4.1-In-terms-of-incremental-area"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;It is also possible to use the triangles' areas to compute $\pi$.  The additional area contributed by each iteration can be computed by analyzing $T_{nS}$, the area of which is written below by using the Pythagorean theorem for $L_{nS}$.&lt;/p&gt;
+$$
 \begin{aligned}
 A_{TnS} &amp;amp;= \frac{1}{2} \cdot L_{nC} \cdot L_{nS}  \\
   &amp;amp;= \frac{1}{2} \cdot \frac{H_{n-1}}{2} \cdot \sqrt{H_n^2 - \left( \frac{H_{n-1}}{2} \right)^2}  \\
   &amp;amp;= \frac{H_{n-1}}{4} \cdot \left(r - \sqrt{r^2 - \left( \frac{H_{n-1}}{2} \right)^2} \right)
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;There are &lt;span class="math"&gt;\(2^n\)&lt;/span&gt; such &lt;span class="math"&gt;\(T_{nS}\)&lt;/span&gt; in the region between &lt;span class="math"&gt;\(0\)&lt;/span&gt; and &lt;span class="math"&gt;\(90\)&lt;/span&gt; degrees. Therefore, multiplying &lt;span class="math"&gt;\(A_{TnS}\)&lt;/span&gt; by &lt;span class="math"&gt;\(2^{n+2}\)&lt;/span&gt; gives the total incremental area at an arbitrary index, &lt;span class="math"&gt;\(\Delta A_n\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;There are $2^n$ such $T_{nS}$ in the region between $0$ and $90$ degrees.  Therefore, multiplying $A_{TnS}$ by $2^{n+2}$ gives the total incremental area at an arbitrary index, $\Delta A_n$.&lt;/p&gt;
+$$
 \begin{aligned}
 \Delta A_n &amp;amp;= 2^{n+2} \cdot A_{TnS}  \\
   &amp;amp;= 2^n \cdot H_{n-1} \cdot \left(r - \sqrt{r^2 - \left( \frac{H_{n-1}}{2} \right)^2} \right)
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;The total area at some index, &lt;span class="math"&gt;\(A_n\)&lt;/span&gt;, is an accumulation of &lt;span class="math"&gt;\(\Delta A_n\)&lt;/span&gt; plus the initial value, &lt;span class="math"&gt;\(A_0\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;The total area at some index, $A_n$, is an accumulation of $\Delta A_n$ plus the initial value, $A_0$.&lt;/p&gt;
+$$
 \begin{aligned}
 A_0 &amp;amp;= 2 \cdot r^2  \\
 A_n &amp;amp;= A_0 + \sum_n \Delta A_n \mbox{ , for } n&amp;gt;0
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;As for the perimeter case, if the area-based result is used to compute &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; then it is at best an approximation. When implemented in code it has the same precision limitations as the perimeter case.&lt;/p&gt;
-&lt;p&gt;&lt;span class="math"&gt;\[
+$$&lt;p&gt;As for the perimeter case, if the area-based result is used to compute $\pi$ then it is at best an approximation.  When implemented in code it has the same precision limitations as the perimeter case.&lt;/p&gt;
+$$
 \begin{aligned}
 \pi &amp;amp;\approx \frac{A_n}{r^2}
 \end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
+$$
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="5.0-Python-implementation"&gt;5.0 Python implementation&lt;a class="anchor-link" href="#5.0-Python-implementation"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
 &lt;/div&gt;
-
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[8]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;
 
-&lt;span class="c"&gt;# http://www.piday.org/million/&lt;/span&gt;
-&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;3.141592653589793238462643383279502884197169399375&amp;#39;&lt;/span&gt; &lt;span class="c"&gt;# and many more ...&lt;/span&gt;
+&lt;span class="c1"&gt;# http://www.piday.org/million/&lt;/span&gt;
+&lt;span class="n"&gt;PI&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;3.141592653589793238462643383279502884197169399375&amp;#39;&lt;/span&gt; &lt;span class="c1"&gt;# and many more ...&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;compare_pi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;    Compare the approximation to pi given by &amp;#39;value&amp;#39; to the actual value.&lt;/span&gt;
 &lt;span class="sd"&gt;    - &amp;#39;value&amp;#39; argument must be a float&lt;/span&gt;
 &lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="c"&gt;# first, convert &amp;#39;value&amp;#39; into a super-long string&lt;/span&gt;
-    &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%.050g&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
-    &lt;span class="c"&gt;# next, iterate over the characters in the PI string&lt;/span&gt;
-    &lt;span class="c"&gt;# if there is a mismatch between PI and value, stop iterating&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+    &lt;span class="c1"&gt;# first, convert &amp;#39;value&amp;#39; into a super-long string&lt;/span&gt;
+    &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%.050g&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+    &lt;span class="c1"&gt;# next, iterate over the characters in the PI string&lt;/span&gt;
+    &lt;span class="c1"&gt;# if there is a mismatch between PI and value, stop iterating&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;PI&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;PI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;correct portion = &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-            &lt;span class="c"&gt;# the conditional ignores each string&amp;#39;s decimal symbol&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;mismatch at digit &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;correct portion = &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="c1"&gt;# the conditional ignores each string&amp;#39;s decimal symbol&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;mismatch at digit &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
             &lt;span class="k"&gt;break&lt;/span&gt;
 
-&lt;span class="c"&gt;# assign the radius and number of iterations&lt;/span&gt;
-&lt;span class="c"&gt;# make r a float to avoid unintentional integer division&lt;/span&gt;
+&lt;span class="c1"&gt;# assign the radius and number of iterations&lt;/span&gt;
+&lt;span class="c1"&gt;# make r a float to avoid unintentional integer division&lt;/span&gt;
 &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;
-&lt;span class="c"&gt;# in its current form, the best this script can do is 16 decimal places&lt;/span&gt;
-&lt;span class="c"&gt;# this occurs for iterations &amp;gt;= 24&lt;/span&gt;
+&lt;span class="c1"&gt;# in its current form, the best this script can do is 16 decimal places&lt;/span&gt;
+&lt;span class="c1"&gt;# this occurs for iterations &amp;gt;= 24&lt;/span&gt;
 &lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;24&lt;/span&gt;
 
-&lt;span class="c"&gt;# during every loop:&lt;/span&gt;
-&lt;span class="c"&gt;#   (1) compute the current hypotneuse using the previous hypotneuse&lt;/span&gt;
-&lt;span class="c"&gt;#   (2) compute pi using the current hypotneuse&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="c1"&gt;# during every loop:&lt;/span&gt;
+&lt;span class="c1"&gt;#   (1) compute the current hypotneuse using the previous hypotneuse&lt;/span&gt;
+&lt;span class="c1"&gt;#   (2) compute pi using the current hypotneuse&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iterations&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;H_current&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sqrt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -214,30 +1209,34 @@ In&amp;nbsp;[8]:
     &lt;span class="n"&gt;pi_approximated&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;H_current&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
     &lt;span class="n"&gt;H_previous&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;H_current&lt;/span&gt;
 
-    &lt;span class="c"&gt;# conditional that avoids printing each iteration&amp;#39;s details&lt;/span&gt;
+    &lt;span class="c1"&gt;# conditional that avoids printing each iteration&amp;#39;s details&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;iterations&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;...&amp;#39;&lt;/span&gt;
+            &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;...&amp;#39;&lt;/span&gt;
         &lt;span class="k"&gt;continue&lt;/span&gt;
 
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;--------------------------------------------------------&amp;#39;&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;iteration number &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;n = {:}, which gives {:,} triangles&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;calculated pi   = &lt;/span&gt;&lt;span class="si"&gt;%.030g&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;pi_approximated&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;--------------------------------------------------------&amp;#39;&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;iteration number &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;n = &lt;/span&gt;&lt;span class="si"&gt;{:}&lt;/span&gt;&lt;span class="s1"&gt;, which gives &lt;/span&gt;&lt;span class="si"&gt;{:,}&lt;/span&gt;&lt;span class="s1"&gt; triangles&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;calculated pi   = &lt;/span&gt;&lt;span class="si"&gt;%.030g&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;pi_approximated&lt;/span&gt;
     &lt;span class="n"&gt;compare_pi&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pi_approximated&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
-&lt;pre&gt;
---------------------------------------------------------
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;--------------------------------------------------------
 iteration number 1
 n = 0, which gives 2 triangles
 calculated pi   = 2.82842712474619029094924371748
@@ -264,7 +1263,6 @@ n = 23, which gives 16,777,216 triangles
 calculated pi   = 3.14159265358979000737349451811
 correct portion = 3.14159265358979
 mismatch at digit 16
-
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -272,5 +1270,38 @@ mismatch at digit 16
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;Download this post's IPython notebook &lt;a href="https://github.com/h-gens/h-gens.github.io-pelican/tree/master/content/notebooks/"&gt;here&lt;/a&gt;.  &lt;/p&gt;</summary><category term="python"></category><category term="math"></category></entry></feed>
+&lt;/div&gt;
+ 
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+
+
+&lt;p&gt;Download this post's IPython notebook &lt;a href="https://github.com/h-gens/h-gens.github.io-pelican/tree/master/content/notebooks/"&gt;here&lt;/a&gt;.  &lt;/p&gt;</content><category term="python"></category><category term="math"></category></entry></feed>

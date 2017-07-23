@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2016-02-12T15:25:00+01:00</updated><entry><title>Python as a MATLAB alternative</title><link href="https://h-gens.github.io/python-as-a-matlab-alternative.html" rel="alternate"></link><updated>2016-02-12T15:25:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2016-02-12:python-as-a-matlab-alternative.html</id><summary type="html">&lt;p&gt;I used MATLAB heavily throughout graduate school for analysis of measured data.  I parsed text files, created plots for publication, performed optimization, and created GUIs when needed.  There really wasn't anything that I felt the tool couldn't do with respect to my needs at the time.  I happily continued using MATLAB upon joining my first company until one day we ran out of licenses.  At that moment I realized I'd locked myself into a tool whose limited availability was directly related to my ability to do work.  Fortunately for me, this came at a point where several established alternatives already existed, and I settled upon Python.  &lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>H.Gens - misc</title><link href="https://h-gens.github.io/" rel="alternate"></link><link href="https://h-gens.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://h-gens.github.io/</id><updated>2016-02-12T15:25:00-05:00</updated><entry><title>Python as a MATLAB alternative</title><link href="https://h-gens.github.io/python-as-a-matlab-alternative.html" rel="alternate"></link><published>2016-02-12T15:25:00-05:00</published><updated>2016-02-12T15:25:00-05:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2016-02-12:/python-as-a-matlab-alternative.html</id><summary type="html">&lt;p&gt;Python can be used as a MATLAB alternative for scientific analysis.  This post contains installation advice and example code in both languages.&lt;/p&gt;</summary><content type="html">&lt;p&gt;I used MATLAB heavily throughout graduate school for analysis of measured data.  I parsed text files, created plots for publication, performed optimization, and created GUIs when needed.  There really wasn't anything that I felt the tool couldn't do with respect to my needs at the time.  I happily continued using MATLAB upon joining my first company until one day we ran out of licenses.  At that moment I realized I'd locked myself into a tool whose limited availability was directly related to my ability to do work.  Fortunately for me, this came at a point where several established alternatives already existed, and I settled upon Python.  &lt;/p&gt;
 &lt;p&gt;For a Windows user, recreating a MATLAB-like experience is immediately possible by downloading &lt;a href="https://winpython.github.io/"&gt;WinPython&lt;/a&gt; and using the &lt;a href="https://github.com/spyder-ide/spyder"&gt;Spyder IDE&lt;/a&gt;.  Below is a quick screenshot of the IDE on my computer.  Any MATLAB user should quickly appreciate the similarity.  &lt;/p&gt;
-&lt;p&gt;&lt;img alt="Spyder IDE" src="images/2016-02-12-matlab-to-python/spyder_ide.png" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Spyder IDE" src="images/2016-02-12-matlab-to-python/spyder_ide.png"&gt;  &lt;/p&gt;
 &lt;h2&gt;Details&lt;/h2&gt;
 &lt;p&gt;Scientific Python is enabled by the "holy trinity" of three Python packages:  &lt;/p&gt;
 &lt;ul&gt;
@@ -33,7 +33,7 @@
 &lt;h2&gt;Plotting examples&lt;/h2&gt;
 &lt;p&gt;The following code blocks accomplish the same thing: they demonstrate how one would plot a squared sinusoid.  The first example is in MATLAB and the second is in Python.  The figures from both blocks are shown.  &lt;/p&gt;
 &lt;p&gt;MATLAB example:  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;  
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;  
 &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nb"&gt;pi&lt;/span&gt;  
 &lt;span class="n"&gt;dx&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
 &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt;  
@@ -47,9 +47,9 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="MATLAB output" src="images/2016-02-12-matlab-to-python/example_matlab.png" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="MATLAB output" src="images/2016-02-12-matlab-to-python/example_matlab.png"&gt;  &lt;/p&gt;
 &lt;p&gt;Python example:  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;  
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;  
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;  
 &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;  
 &lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;  
@@ -57,19 +57,19 @@
 &lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;  
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;  
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;b-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;x&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fontsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;sin(x)$^2$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fontsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;b-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;x&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fontsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sin(x)$^2$&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fontsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;  
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tight_layout&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="Python output" src="images/2016-02-12-matlab-to-python/example_python.png" /&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python output" src="images/2016-02-12-matlab-to-python/example_python.png"&gt;  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;One could use &lt;code&gt;plt.xticks([0, 5, 10])&lt;/code&gt; and &lt;code&gt;plt.yticks([0, 0.5, 1])&lt;/code&gt; to make them even more similar.  &lt;/p&gt;
-&lt;/blockquote&gt;</summary><category term="python"></category></entry><entry><title>Creating a grid of matplotlib figures</title><link href="https://h-gens.github.io/creating-a-grid-of-matplotlib-figures.html" rel="alternate"></link><updated>2015-12-13T16:49:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-12-13:creating-a-grid-of-matplotlib-figures.html</id><summary type="html">&lt;p&gt;Whenever I'm analyzing a dataset, I tend to create lots of different plots (e.g., y-axis transforms, different x-variables, etc.).  Usually, it's a lot more instructive to view all these plots at once so that differences can be readily viewed.  Since it rapidly becomes tedious to manually position/resize the automatically-created plotting windows, I wrote a tool called &lt;a href="http://github.com/h-gens/matplotgrid"&gt;&lt;strong&gt;matplotgrid&lt;/strong&gt;&lt;/a&gt; that tiles the windows.  Below is a demonstration of what the tiling looks like.  &lt;/p&gt;
-&lt;p&gt;&lt;img alt="Example 1 result" src="images/2015-12-13-matplotgrid/example1.png" /&gt;  &lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="python"></category></entry><entry><title>Creating a grid of matplotlib figures</title><link href="https://h-gens.github.io/creating-a-grid-of-matplotlib-figures.html" rel="alternate"></link><published>2015-12-13T16:49:00-05:00</published><updated>2015-12-13T16:49:00-05:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-12-13:/creating-a-grid-of-matplotlib-figures.html</id><summary type="html">&lt;p&gt;Whenever I'm analyzing a dataset, I tend to create lots of different plots (e.g., y-axis transforms, different x-variables, etc.).  Usually, it's a lot more instructive to view all these plots at once so that differences can be readily viewed.  Since it rapidly becomes tedious to manually position/resize the automatically-created plotting windows, I created a tool called &lt;a href="http://github.com/h-gens/matplotgrid"&gt;&lt;strong&gt;matplotgrid&lt;/strong&gt;&lt;/a&gt; that tiles the windows.&lt;/p&gt;</summary><content type="html">&lt;p&gt;Whenever I'm analyzing a dataset, I tend to create lots of different plots (e.g., y-axis transforms, different x-variables, etc.).  Usually, it's a lot more instructive to view all these plots at once so that differences can be readily viewed.  Since it rapidly becomes tedious to manually position/resize the automatically-created plotting windows, I wrote a tool called &lt;a href="http://github.com/h-gens/matplotgrid"&gt;&lt;strong&gt;matplotgrid&lt;/strong&gt;&lt;/a&gt; that tiles the windows.  Below is a demonstration of what the tiling looks like.  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Example 1 result" src="images/2015-12-13-matplotgrid/example1.png"&gt;  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;from matplotgrid import GridCreator; gc = GridCreator(); gc.create(8)  &lt;/p&gt;
 &lt;/blockquote&gt;
@@ -107,115 +107,1103 @@
 &lt;/ul&gt;
 &lt;h2&gt;Usage&lt;/h2&gt;
 &lt;p&gt;Example 1  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotgrid&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;  
-&lt;span class="c"&gt;# Define a grid with 3 rows and 6 columns.  &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotgrid&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;  
+&lt;span class="c1"&gt;# Define a grid with 3 rows and 6 columns.  &lt;/span&gt;
 &lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
-&lt;span class="c"&gt;# Create 8 figures.  &lt;/span&gt;
+&lt;span class="c1"&gt;# Create 8 figures.  &lt;/span&gt;
 &lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Example 2  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# create four figures, numbered 9, 10, 11, 12.  &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# create four figures, numbered 9, 10, 11, 12.  &lt;/span&gt;
 &lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Example 3  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Create four figures on the second monitor from left.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Create four figures on the second monitor from left.&lt;/span&gt;
 &lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;  
 &lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Example 4  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# Create twenty-two figures but constrain all figures to the first&lt;/span&gt;
-&lt;span class="c"&gt;# monitor from left.&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Create twenty-two figures but constrain all figures to the first&lt;/span&gt;
+&lt;span class="c1"&gt;# monitor from left.&lt;/span&gt;
 &lt;span class="n"&gt;gc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GridCreator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;  
 &lt;span class="n"&gt;gc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;The repository can be found &lt;a href="http://github.com/h-gens/matplotgrid"&gt;here&lt;/a&gt;.  &lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Recovering a lost combination</title><link href="https://h-gens.github.io/recovering-a-lost-combination.html" rel="alternate"></link><updated>2015-11-21T14:21:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-11-21:recovering-a-lost-combination.html</id><summary type="html">&lt;p&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;I lost the combination to an old Master Lock of mine. Fortunately, figuring out the combination for my type of lock is a &lt;a href="http://www.wikihow.com/Crack-a-%22Master-Lock%22-Combination-Lock"&gt;well-known process&lt;/a&gt;. Unfortunately, the previous link's method for finding the third value in the combination did not work for me, but I &lt;a href="http://masterunlocked.com/index1.html"&gt;found instructions&lt;/a&gt; that were very helpful. Once the third value is found there is an algorithm to generate 80 possible combinations, which is where Python comes in.&lt;/p&gt;
-&lt;h4 id="procedure-outline"&gt;Procedure outline&lt;/h4&gt;
-&lt;p&gt;&lt;em&gt;Only apply this method to locks for which you are the sole owner.&lt;/em&gt;&lt;/p&gt;
-&lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;Clear the lock by spinning the dial clockwise by three revolutions, ending with the dial set to zero.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Rotate the dial through its twelve &amp;quot;sticking points&amp;quot; and find the non-fake sticking point. This non-fake point is the third value in the lock's combination.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Once the third value is found, run the script that follows.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id="sticking-points"&gt;Sticking points&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Sticking points occur when you pull up on the shackle and are only able to rotate the dial by approximately +/- 0.5.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Once you've found a sticking point, move to the next one by removing tension from the shackle. Rotate the dial slightly counter-clockwise so that the next sticking point will catch upon tensioning the shackle again.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id="a-sticking-point-is-likely-fake-if"&gt;A sticking point is likely fake if:&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;The dial pivots between two whole numbers (e.g., 20 and 21).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;When you pull up super hard on the shackle the dial's rotation becomes limited. (When I successfully found my third value, the dial rotated by +/-0.5 freely regardless of how much tension I applied to the shackle.)&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;The repository can be found &lt;a href="http://github.com/h-gens/matplotgrid"&gt;here&lt;/a&gt;.  &lt;/p&gt;</content><category term="python"></category></entry><entry><title>Recovering a lost combination</title><link href="https://h-gens.github.io/recovering-a-lost-combination.html" rel="alternate"></link><published>2015-11-21T14:21:00-05:00</published><updated>2015-11-21T14:21:00-05:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-11-21:/recovering-a-lost-combination.html</id><summary type="html">&lt;p&gt;An example of using Python to recover a lock's forgotten combination.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area &gt; div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area &gt; div.highlight &gt; pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+&lt;/style&gt;
+&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
+&lt;style type="text/css"&gt;
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I lost the combination to an old Master Lock of mine.  Fortunately, figuring out the combination for my type of lock is a &lt;a href="http://www.wikihow.com/Crack-a-%22Master-Lock%22-Combination-Lock"&gt;well-known process&lt;/a&gt;.  Unfortunately, the previous link's method for finding the third value in the combination did not work for me, but I &lt;a href="http://masterunlocked.com/index1.html"&gt;found instructions&lt;/a&gt; that were very helpful.  Once the third value is found there is an algorithm to generate 80 possible combinations, which is where Python comes in.&lt;/p&gt;
+&lt;h4 id="Procedure-outline"&gt;Procedure outline&lt;a class="anchor-link" href="#Procedure-outline"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;&lt;em&gt;Only apply this method to locks for which you are the sole owner.&lt;/em&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Clear the lock by spinning the dial clockwise by three revolutions, ending with the dial set to zero.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Rotate the dial through its twelve "sticking points" and find the non-fake sticking point.  This non-fake point is the third value in the lock's combination.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once the third value is found, run the script that follows.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="Sticking-points"&gt;Sticking points&lt;a class="anchor-link" href="#Sticking-points"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Sticking points occur when you pull up on the shackle and are only able to rotate the dial by approximately +/- 0.5.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Once you've found a sticking point, move to the next one by removing tension from the shackle.  Rotate the dial slightly counter-clockwise so that the next sticking point will catch upon tensioning the shackle again.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id="A-sticking-point-is-likely-fake-if:"&gt;A sticking point is likely fake if:&lt;a class="anchor-link" href="#A-sticking-point-is-likely-fake-if:"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;The dial pivots between two whole numbers (e.g., 20 and 21).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When you pull up super hard on the shackle the dial's rotation becomes limited.  (When I successfully found my third value, the dial rotated by +/-0.5 freely regardless of how much tension I applied to the shackle.)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="Python-implementation"&gt;Python implementation&lt;a class="anchor-link" href="#Python-implementation"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;
 &lt;/div&gt;
-
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[1]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;1. First find the non-fake sticking point (the third value).&lt;/span&gt;
 &lt;span class="sd"&gt;2. Enter the third_value below, then run the script.&lt;/span&gt;
 &lt;span class="sd"&gt;3. Try each combination until the correct one is found.&lt;/span&gt;
 &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="c"&gt;# ------------------------&lt;/span&gt;
-&lt;span class="c"&gt;# user-defined input&lt;/span&gt;
-&lt;span class="c"&gt;# ------------------------&lt;/span&gt;
-&lt;span class="c"&gt;# Find the third value manually, then assign it here.&lt;/span&gt;
+&lt;span class="c1"&gt;# ------------------------&lt;/span&gt;
+&lt;span class="c1"&gt;# user-defined input&lt;/span&gt;
+&lt;span class="c1"&gt;# ------------------------&lt;/span&gt;
+&lt;span class="c1"&gt;# Find the third value manually, then assign it here.&lt;/span&gt;
 &lt;span class="n"&gt;third_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;
 
-&lt;span class="c"&gt;# ------------------------&lt;/span&gt;
-&lt;span class="c"&gt;# algorithm&lt;/span&gt;
-&lt;span class="c"&gt;# ------------------------&lt;/span&gt;
-&lt;span class="c"&gt;# Divide by 4 and store the remainder.  The remainder is called the&lt;/span&gt;
-&lt;span class="c"&gt;# &amp;quot;magic number&amp;quot;&lt;/span&gt;
+&lt;span class="c1"&gt;# ------------------------&lt;/span&gt;
+&lt;span class="c1"&gt;# algorithm&lt;/span&gt;
+&lt;span class="c1"&gt;# ------------------------&lt;/span&gt;
+&lt;span class="c1"&gt;# Divide by 4 and store the remainder.  The remainder is called the&lt;/span&gt;
+&lt;span class="c1"&gt;# &amp;quot;magic number&amp;quot;&lt;/span&gt;
 &lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;third_value&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
 
-&lt;span class="c"&gt;# Compute the possible values for the first value.&lt;/span&gt;
-&lt;span class="n"&gt;first_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="c1"&gt;# Compute the possible values for the first value.&lt;/span&gt;
+&lt;span class="n"&gt;first_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
 
-&lt;span class="c"&gt;# Compute the possible values for the second value.&lt;/span&gt;
+&lt;span class="c1"&gt;# Compute the possible values for the second value.&lt;/span&gt;
 &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
     &lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
 &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;-=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-&lt;span class="n"&gt;second_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-&lt;span class="c"&gt;# The two values closest to third_value can be eliminated.&lt;/span&gt;
+&lt;span class="n"&gt;second_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;magic_number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;xrange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="c1"&gt;# The two values closest to third_value can be eliminated.&lt;/span&gt;
 &lt;span class="n"&gt;second_values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;second_values&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;third_value&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-&lt;span class="c"&gt;# Compute the possible combinations.&lt;/span&gt;
+&lt;span class="c1"&gt;# Compute the possible combinations.&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;first_values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;second_values&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;third_value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-        &lt;span class="c"&gt;# Uncomment the following line to pause the looping.&lt;/span&gt;
-        &lt;span class="c"&gt;# r = raw_input(&amp;#39;continue ?&amp;#39;)&lt;/span&gt;
+        &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt; - &lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;third_value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="c1"&gt;# Uncomment the following line to pause the looping.&lt;/span&gt;
+        &lt;span class="c1"&gt;# r = raw_input(&amp;#39;continue ?&amp;#39;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
-&lt;pre&gt;
-0 - 2 - 20
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;0 - 2 - 20
 0 - 6 - 20
 0 - 10 - 20
 0 - 14 - 20
@@ -295,7 +1283,6 @@ In&amp;nbsp;[1]:
 36 - 30 - 20
 36 - 34 - 20
 36 - 38 - 20
-
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -303,8 +1290,41 @@ In&amp;nbsp;[1]:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;Download this post's IPython notebook &lt;a href="https://github.com/h-gens/h-gens.github.io-pelican/tree/master/content/notebooks/"&gt;here&lt;/a&gt;.  &lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Controlling instruments over GPIB with SCPI</title><link href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html" rel="alternate"></link><updated>2015-04-17T20:41:00+02:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-04-17:controlling-instruments-over-gpib-with-scpi.html</id><summary type="html">&lt;p&gt;An electronics lab contains equipment that can usually be controlled through at least two means:&lt;/p&gt;
+&lt;/div&gt;
+ 
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+
+
+&lt;p&gt;Download this post's IPython notebook &lt;a href="https://github.com/h-gens/h-gens.github.io-pelican/tree/master/content/notebooks/"&gt;here&lt;/a&gt;.  &lt;/p&gt;</content><category term="python"></category></entry><entry><title>Controlling instruments over GPIB with SCPI</title><link href="https://h-gens.github.io/controlling-instruments-over-gpib-with-scpi.html" rel="alternate"></link><published>2015-04-17T20:41:00-05:00</published><updated>2015-04-17T20:41:00-05:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-04-17:/controlling-instruments-over-gpib-with-scpi.html</id><summary type="html">&lt;p&gt;A quick introduction to interfacing with lab equipment over GPIB with the &lt;a href="https://pyvisa.readthedocs.org/en/stable/"&gt;PyVISA&lt;/a&gt; library by sending SCPI commands.  A simple script is shown that executes a staircase measurement on an Agilent E5270.&lt;/p&gt;</summary><content type="html">&lt;p&gt;An electronics lab contains equipment that can usually be controlled through at least two means:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;the instrument's front panel  &lt;/li&gt;
 &lt;li&gt;the instrument's GPIB address  &lt;/li&gt;
@@ -316,11 +1336,11 @@ In&amp;nbsp;[1]:
 &lt;h3&gt;Useful links&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://cp.literature.agilent.com/litweb/pdf/E5260-90010.pdf"&gt;Agilent E5270 Series Programming Guide&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.keysight.com/en/pd-1985909/io-libraries-suite?&amp;amp;cc=US&amp;amp;lc=eng"&gt;Keysight IO Libraries Suite&lt;/a&gt;&lt;br /&gt;
+&lt;li&gt;&lt;a href="http://www.keysight.com/en/pd-1985909/io-libraries-suite?&amp;amp;cc=US&amp;amp;lc=eng"&gt;Keysight IO Libraries Suite&lt;/a&gt;&lt;br&gt;
 (Note: Keysight was the electronics measurement division of Agilent before being spun-off.  Similarly, Agilent was the electronics measurement division of HP before being spun-off.)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Example Python script&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;A sequence of commands to execute a staircase measurement of a 3-terminal&lt;/span&gt;
 &lt;span class="sd"&gt;transistor (source/gate/drain terminals)&lt;/span&gt;
 
@@ -339,46 +1359,46 @@ In&amp;nbsp;[1]:
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
 
-&lt;span class="c"&gt;# the GPIB card number on the local computer&lt;/span&gt;
+&lt;span class="c1"&gt;# the GPIB card number on the local computer&lt;/span&gt;
 &lt;span class="n"&gt;card_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="c"&gt;# the instrument&amp;#39;s GPIB address&lt;/span&gt;
+&lt;span class="c1"&gt;# the instrument&amp;#39;s GPIB address&lt;/span&gt;
 &lt;span class="n"&gt;instrument_address&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;17&lt;/span&gt;
 
 &lt;span class="n"&gt;rm&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;visa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ResourceManager&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open_resource&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="s"&gt;&amp;#39;GPIB&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;::&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s"&gt;::INSTR&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;card_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;instrument_address&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;GPIB&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;::&lt;/span&gt;&lt;span class="si"&gt;%d&lt;/span&gt;&lt;span class="s1"&gt;::INSTR&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;card_address&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;instrument_address&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# -----------------&lt;/span&gt;
-&lt;span class="c"&gt;# instrument setup&lt;/span&gt;
-&lt;span class="c"&gt;# -----------------&lt;/span&gt;
-&lt;span class="c"&gt;# reset the instrument&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;*rst&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c1"&gt;# instrument setup&lt;/span&gt;
+&lt;span class="c1"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c1"&gt;# reset the instrument&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;*rst&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# set the measurement mode to staircase sweep&lt;/span&gt;
-&lt;span class="c"&gt;# specify the channels that should be measured&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;mm 2,2,4,5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# set the measurement mode to staircase sweep&lt;/span&gt;
+&lt;span class="c1"&gt;# specify the channels that should be measured&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mm 2,2,4,5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# configure the staircase on channel 4 (drain)&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;wv 4,1,0,0,10,101,1e-2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# configure the staircase on channel 4 (drain)&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wv 4,1,0,0,10,101,1e-2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# enable the output switches on channels 2,4,5&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;cn 2,4,5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# enable the output switches on channels 2,4,5&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cn 2,4,5&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# set the bias of the constant channels 2/5 (source/gate)&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;dv 2,0,0,1e-2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;dv 5,0,3,1e-4&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# set the bias of the constant channels 2/5 (source/gate)&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dv 2,0,0,1e-2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dv 5,0,3,1e-4&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# -----------------&lt;/span&gt;
-&lt;span class="c"&gt;# execute and close&lt;/span&gt;
-&lt;span class="c"&gt;# -----------------&lt;/span&gt;
-&lt;span class="c"&gt;# execute the measurement&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;xe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c1"&gt;# execute and close&lt;/span&gt;
+&lt;span class="c1"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c1"&gt;# execute the measurement&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;xe&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# close all channels so they no longer are outputting voltage&lt;/span&gt;
-&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;cl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# close all channels so they no longer are outputting voltage&lt;/span&gt;
+&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;cl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# read the result from the output buffer&lt;/span&gt;
+&lt;span class="c1"&gt;# read the result from the output buffer&lt;/span&gt;
 &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -389,47 +1409,47 @@ In&amp;nbsp;[1]:
 &lt;/blockquote&gt;
 &lt;p&gt;In each comma-separated value there are three preceding characters.  The first character is the status code.  The second character is the letter code.  There is a unique letter code for each channel in the E5270, so a mapping dictionary is referred to in order to figure out which channel corresponds to which letter code.  The third character indicates the data type.  See page 36 of the programming manual linked above.  &lt;/p&gt;
 &lt;h2&gt;Processing the result&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="c"&gt;# -----------------&lt;/span&gt;
-&lt;span class="c"&gt;# parsing data&lt;/span&gt;
-&lt;span class="c"&gt;# -----------------&lt;/span&gt;
-&lt;span class="c"&gt;# this is the letter code mapping dictionary&lt;/span&gt;
-&lt;span class="c"&gt;# (see page 37 of the programming manual)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c1"&gt;# parsing data&lt;/span&gt;
+&lt;span class="c1"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c1"&gt;# this is the letter code mapping dictionary&lt;/span&gt;
+&lt;span class="c1"&gt;# (see page 37 of the programming manual)&lt;/span&gt;
 &lt;span class="n"&gt;CHANNELS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="s"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Is&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# channel 2&lt;/span&gt;
-    &lt;span class="s"&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# channel 4&lt;/span&gt;
-    &lt;span class="s"&gt;&amp;#39;E&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# channel 5&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Is&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# channel 2&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# channel 4&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;E&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c1"&gt;# channel 5&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="c"&gt;# split the CSV string so it can be iterated over&lt;/span&gt;
-&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# split the CSV string so it can be iterated over&lt;/span&gt;
+&lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;,&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;currents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="s"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
-    &lt;span class="s"&gt;&amp;#39;Is&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
-    &lt;span class="s"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Is&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;span class="c"&gt;# iterate over the result list and store the values as floats&lt;/span&gt;
+&lt;span class="c1"&gt;# iterate over the result list and store the values as floats&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="c"&gt;# get the terminal name by consulting the mapping dictionary&lt;/span&gt;
+    &lt;span class="c1"&gt;# get the terminal name by consulting the mapping dictionary&lt;/span&gt;
     &lt;span class="n"&gt;terminal_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;CHANNELS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-    &lt;span class="c"&gt;# convert the numerical portion of the string to a float&lt;/span&gt;
+    &lt;span class="c1"&gt;# convert the numerical portion of the string to a float&lt;/span&gt;
     &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:])&lt;/span&gt;
-    &lt;span class="c"&gt;# store value within the &amp;#39;currents&amp;#39; dict&lt;/span&gt;
+    &lt;span class="c1"&gt;# store value within the &amp;#39;currents&amp;#39; dict&lt;/span&gt;
     &lt;span class="n"&gt;currents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;terminal_name&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# -----------------&lt;/span&gt;
-&lt;span class="c"&gt;# plotting&lt;/span&gt;
-&lt;span class="c"&gt;# -----------------&lt;/span&gt;
-&lt;span class="c"&gt;# create the independent variable (Vd) so the result can be plotted&lt;/span&gt;
+&lt;span class="c1"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c1"&gt;# plotting&lt;/span&gt;
+&lt;span class="c1"&gt;# -----------------&lt;/span&gt;
+&lt;span class="c1"&gt;# create the independent variable (Vd) so the result can be plotted&lt;/span&gt;
 &lt;span class="n"&gt;Vd&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;linspace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;101&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# plot the data&lt;/span&gt;
+&lt;span class="c1"&gt;# plot the data&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;currents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;currents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;clf&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;semilogy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;currents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;semilogy&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Vd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;currents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Ig&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -440,57 +1460,57 @@ In&amp;nbsp;[1]:
 &lt;li&gt;Use &lt;code&gt;rm.list_resources()&lt;/code&gt; to print a list of visible instruments.  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3&gt;Closing&lt;/h3&gt;
-&lt;p&gt;That concludes the quick introduction to instrument control via GPIB+SCPI.  In a more complete instrument controller, I would send additional commands to change instrument settings such as integration time and store results in &lt;a href="http://pandas.pydata.org/"&gt;pandas&lt;/a&gt; DataFrames (or numpy arrays).  Instead of a one-off script, it is often useful to create a class for a particular instrument that contains methods to perform many different types of measurements.  This makes the instrument an importable library with a human-readable command set and avoids having to write/remember SCPI commands.  &lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Converting IPython notebooks to PDFs</title><link href="https://h-gens.github.io/converting-ipython-notebooks-to-pdfs.html" rel="alternate"></link><updated>2015-01-04T09:35:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-01-04:converting-ipython-notebooks-to-pdfs.html</id><summary type="html">&lt;p&gt;A few weeks ago I wanted to share an &lt;a href="http://ipython.org/"&gt;IPython notebook&lt;/a&gt; with a friend who did not have IPython installed.  The natural choice was to convert it to a PDF, which turned out to be more painful than expected.  The following instructions are written for Windows users and IPython v2.3.  The only dependency is &lt;a href="http://wkhtmltopdf.org/"&gt;wkhtmltopdf&lt;/a&gt; (webkit HTML to PDF).  &lt;/p&gt;
+&lt;p&gt;That concludes the quick introduction to instrument control via GPIB+SCPI.  In a more complete instrument controller, I would send additional commands to change instrument settings such as integration time and store results in &lt;a href="http://pandas.pydata.org/"&gt;pandas&lt;/a&gt; DataFrames (or numpy arrays).  Instead of a one-off script, it is often useful to create a class for a particular instrument that contains methods to perform many different types of measurements.  This makes the instrument an importable library with a human-readable command set and avoids having to write/remember SCPI commands.  &lt;/p&gt;</content><category term="python"></category></entry><entry><title>Converting IPython notebooks to PDFs</title><link href="https://h-gens.github.io/converting-ipython-notebooks-to-pdfs.html" rel="alternate"></link><published>2015-01-04T09:35:00-05:00</published><updated>2015-01-04T09:35:00-05:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-01-04:/converting-ipython-notebooks-to-pdfs.html</id><summary type="html">&lt;p&gt;A few weeks ago I wanted to share an &lt;a href="http://ipython.org/"&gt;IPython notebook&lt;/a&gt; with a friend who did not have IPython installed.  The natural choice was to convert it to a PDF, which turned out to be more painful than expected.  The following instructions are written for Windows users and IPython v2 …&lt;/p&gt;</summary><content type="html">&lt;p&gt;A few weeks ago I wanted to share an &lt;a href="http://ipython.org/"&gt;IPython notebook&lt;/a&gt; with a friend who did not have IPython installed.  The natural choice was to convert it to a PDF, which turned out to be more painful than expected.  The following instructions are written for Windows users and IPython v2.3.  The only dependency is &lt;a href="http://wkhtmltopdf.org/"&gt;wkhtmltopdf&lt;/a&gt; (webkit HTML to PDF).  &lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;In the notebook editor, export to HTML.&lt;br /&gt;
-  a. File -&amp;gt; Download as -&amp;gt; HTML (.html)&lt;br /&gt;
+&lt;li&gt;In the notebook editor, export to HTML.&lt;br&gt;
+  a. File -&amp;gt; Download as -&amp;gt; HTML (.html)&lt;br&gt;
   b. You will need to manually collect required images and place them in the correct relative path to the exported file or change src="..." paths in the HTML.  &lt;/li&gt;
-&lt;li&gt;If you use a custom.css file then either edit the exported HTML file to point to it or copy the file to the expected path.&lt;br /&gt;
+&lt;li&gt;If you use a custom.css file then either edit the exported HTML file to point to it or copy the file to the expected path.&lt;br&gt;
   a. custom.css lives in &lt;em&gt;~/.ipython/profile_default/static/custom/&lt;/em&gt;  &lt;/li&gt;
-&lt;li&gt;Open the exported HTML file in your browser and save it (&lt;em&gt;File -&amp;gt; Save As&lt;/em&gt;).&lt;br /&gt;
+&lt;li&gt;Open the exported HTML file in your browser and save it (&lt;em&gt;File -&amp;gt; Save As&lt;/em&gt;).&lt;br&gt;
   a. While this step seems unnecessary, without it my MathJax markup was the wrong font size in the resulting PDF.  &lt;/li&gt;
-&lt;li&gt;Run wkhtmltopdf on the saved copy from the previous step.&lt;br /&gt;
+&lt;li&gt;Run wkhtmltopdf on the saved copy from the previous step.&lt;br&gt;
   a. &lt;strong&gt;wkhtmltopdf.exe -s Letter -L 40mm -R 40mm -T 20mm -B 20mm --javascript-delay 5000 infile.html outfile.pdf&lt;/strong&gt;  &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The &lt;strong&gt;-s&lt;/strong&gt; argument sets the page size.  The &lt;strong&gt;-L, -R, -T, -B&lt;/strong&gt; arguments set the left/right/top/bottom margins.  The &lt;strong&gt;--javascript-delay&lt;/strong&gt; argument gives the MathJax javascript time to run (the time required probably depends on document size).  There are many options available in wkhtmltopdf, which can be viewed by calling the executable from the command line without any arguments.  &lt;/p&gt;</summary><category term="python"></category></entry><entry><title>Getting started with Pelican and IPython notebooks</title><link href="https://h-gens.github.io/getting-started-with-pelican-and-ipython-notebooks.html" rel="alternate"></link><updated>2015-01-03T09:19:00+01:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-01-03:getting-started-with-pelican-and-ipython-notebooks.html</id><summary type="html">&lt;p&gt;This site was created with the static site generator, &lt;a href="http://docs.getpelican.com/en/3.5.0/"&gt;Pelican&lt;/a&gt;.  I chose Pelican in order to use &lt;a href="https://jakevdp.github.io"&gt;jakevdp's&lt;/a&gt; liquid_tags notebook &lt;a href="https://github.com/getpelican/pelican-plugins/blob/master/liquid_tags/notebook.py"&gt;plugin&lt;/a&gt; that allows for posting a subset of &lt;a href="http://ipython.org/"&gt;IPython&lt;/a&gt; notebook cells.  The comments below are for Pelican v3.5.0, IPython v1.2, and a December 30, 2014 clone of pelican-plugins.  &lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;-s&lt;/strong&gt; argument sets the page size.  The &lt;strong&gt;-L, -R, -T, -B&lt;/strong&gt; arguments set the left/right/top/bottom margins.  The &lt;strong&gt;--javascript-delay&lt;/strong&gt; argument gives the MathJax javascript time to run (the time required probably depends on document size).  There are many options available in wkhtmltopdf, which can be viewed by calling the executable from the command line without any arguments.  &lt;/p&gt;</content><category term="python"></category></entry><entry><title>Getting started with Pelican and IPython notebooks</title><link href="https://h-gens.github.io/getting-started-with-pelican-and-ipython-notebooks.html" rel="alternate"></link><published>2015-01-03T09:19:00-05:00</published><updated>2015-01-03T09:19:00-05:00</updated><author><name>H.G.</name></author><id>tag:h-gens.github.io,2015-01-03:/getting-started-with-pelican-and-ipython-notebooks.html</id><summary type="html">&lt;p&gt;This site was created with the static site generator, &lt;a href="http://docs.getpelican.com/en/3.5.0/"&gt;Pelican&lt;/a&gt;.  I chose Pelican in order to use &lt;a href="https://jakevdp.github.io"&gt;jakevdp's&lt;/a&gt; liquid_tags notebook &lt;a href="https://github.com/getpelican/pelican-plugins/blob/master/liquid_tags/notebook.py"&gt;plugin&lt;/a&gt; that allows for posting a subset of &lt;a href="http://ipython.org/"&gt;IPython&lt;/a&gt; notebook cells.  The comments below are for Pelican v3.5.0, IPython v1.2, and a December 30, 2014 clone of …&lt;/p&gt;</summary><content type="html">&lt;p&gt;This site was created with the static site generator, &lt;a href="http://docs.getpelican.com/en/3.5.0/"&gt;Pelican&lt;/a&gt;.  I chose Pelican in order to use &lt;a href="https://jakevdp.github.io"&gt;jakevdp's&lt;/a&gt; liquid_tags notebook &lt;a href="https://github.com/getpelican/pelican-plugins/blob/master/liquid_tags/notebook.py"&gt;plugin&lt;/a&gt; that allows for posting a subset of &lt;a href="http://ipython.org/"&gt;IPython&lt;/a&gt; notebook cells.  The comments below are for Pelican v3.5.0, IPython v1.2, and a December 30, 2014 clone of pelican-plugins.  &lt;/p&gt;
 &lt;p&gt;Below are steps used to install Pelican.  &lt;a href="https://www.python.org/downloads/"&gt;Python&lt;/a&gt; and &lt;a href="http://nodejs.org/download/"&gt;node.js&lt;/a&gt; must be installed (I was unable to generate posts containing IPython notebook files without node.js).  Console/terminal commands are contained in brackets.  &lt;/p&gt;
 &lt;p&gt;An older version of IPython is needed because the CSS class names used for python syntax highlighting changed in IPython v2.3.  The liquid_tags notebook plugin appears to only know about the v1.2 CSS class names.  For example, in an IPython notebook, a function named &lt;code&gt;foo&lt;/code&gt; gets wrapped in a class by way of a &lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt; element.  In IPython v1.2 this becomes &lt;code&gt;&amp;lt;span class="nf"&amp;gt;foo&amp;lt;/span&amp;gt;&lt;/code&gt;, but in v2.3 this is &lt;code&gt;&amp;lt;span class="cm-def"&amp;gt;foo&amp;lt;/span&amp;gt;&lt;/code&gt; (I used Chrome to inspect the elements).  I'm not smart enough to fix it, but I assume the problem begins in the plugin's notebook.custom_highlighter() function.  Inside this function a call is made to &lt;code&gt;HtmlFormatter(cssclass='highlight-ipynb')&lt;/code&gt; where &lt;code&gt;HtmlFormatter&lt;/code&gt; comes from the &lt;a href="http://pygments.org/"&gt;Pygments&lt;/a&gt; library.  &lt;/p&gt;
 &lt;h2&gt;Quick pelican setup&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Make a dedicated directory to house the site's contents and change into it.  &lt;/li&gt;
-&lt;li&gt;Set up a virtual environment&lt;br /&gt;
-  a. &lt;strong&gt;[virtualenv env]&lt;/strong&gt;&lt;br /&gt;
-  b. &lt;strong&gt;[env\scripts\activate]&lt;/strong&gt; &lt;br /&gt;
+&lt;li&gt;Set up a virtual environment&lt;br&gt;
+  a. &lt;strong&gt;[virtualenv env]&lt;/strong&gt;&lt;br&gt;
+  b. &lt;strong&gt;[env\scripts\activate]&lt;/strong&gt; &lt;br&gt;
   c. &lt;strong&gt;[pip install pelican markdown ipython==1.2]&lt;/strong&gt;  &lt;/li&gt;
-&lt;li&gt;Install plugins/themes&lt;br /&gt;
-  a. &lt;strong&gt;[git clone https://github.com/getpelican/pelican-plugins.git]&lt;/strong&gt;&lt;br /&gt;
-  b. &lt;strong&gt;[git clone https://github.com/getpelican/pelican-themes.git]&lt;/strong&gt;&lt;br /&gt;
+&lt;li&gt;Install plugins/themes&lt;br&gt;
+  a. &lt;strong&gt;[git clone https://github.com/getpelican/pelican-plugins.git]&lt;/strong&gt;&lt;br&gt;
+  b. &lt;strong&gt;[git clone https://github.com/getpelican/pelican-themes.git]&lt;/strong&gt;&lt;br&gt;
   c. Find other themes by looking at other users' github repositories (e.g. &lt;a href="https://github.com/jakevdp/pelican-octopress-theme"&gt;octopress&lt;/a&gt;, &lt;a href="https://github.com/danielfrg/middle-theme"&gt;middle-theme&lt;/a&gt;)  &lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;[pelican-quickstart]&lt;/strong&gt;  // see &lt;a href="http://mathamy.com/migrating-to-github-pages-using-pelican.html"&gt;here&lt;/a&gt; for a list of questions that are asked  &lt;/li&gt;
-&lt;li&gt;Configure Pelican via pelicanconf.py&lt;br /&gt;
-  a. &lt;em&gt;DELETE_OUTPUT_DIRECTORY = False&lt;/em&gt;&lt;br /&gt;
-  b. &lt;em&gt;PLUGIN_PATHS = ['path/to/pelican-plugins']&lt;/em&gt;&lt;br /&gt;
-  c. &lt;em&gt;PLUGINS = ['liquid_tags.notebook', 'liquid_tags.literal']&lt;/em&gt;&lt;br /&gt;
-  d. &lt;em&gt;EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8') if os.path.exists('_nb_header.html') else None&lt;/em&gt;&lt;br /&gt;
-  e. &lt;em&gt;NOTEBOOK_DIR = 'notebooks'&lt;/em&gt;&lt;br /&gt;
-  f. &lt;em&gt;THEME = 'path/to/theme'&lt;/em&gt;&lt;br /&gt;
+&lt;li&gt;Configure Pelican via pelicanconf.py&lt;br&gt;
+  a. &lt;em&gt;DELETE_OUTPUT_DIRECTORY = False&lt;/em&gt;&lt;br&gt;
+  b. &lt;em&gt;PLUGIN_PATHS = ['path/to/pelican-plugins']&lt;/em&gt;&lt;br&gt;
+  c. &lt;em&gt;PLUGINS = ['liquid_tags.notebook', 'liquid_tags.literal']&lt;/em&gt;&lt;br&gt;
+  d. &lt;em&gt;EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8') if os.path.exists('_nb_header.html') else None&lt;/em&gt;&lt;br&gt;
+  e. &lt;em&gt;NOTEBOOK_DIR = 'notebooks'&lt;/em&gt;&lt;br&gt;
+  f. &lt;em&gt;THEME = 'path/to/theme'&lt;/em&gt;&lt;br&gt;
   g. &lt;em&gt;LOAD_CONTENT_CACHE = False&lt;/em&gt;  &lt;/li&gt;
 &lt;li&gt;Edit the chosen theme's 'base.html' and add &lt;code&gt;{% if EXTRA_HEADER %}{{ EXTRA_HEADER }}{% endif %}&lt;/code&gt; to the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; block  &lt;/li&gt;
-&lt;li&gt;Configure 'content' directory&lt;br /&gt;
-  a. &lt;strong&gt;[mkdir content/images]&lt;/strong&gt;&lt;br /&gt;
+&lt;li&gt;Configure 'content' directory&lt;br&gt;
+  a. &lt;strong&gt;[mkdir content/images]&lt;/strong&gt;&lt;br&gt;
   b. &lt;strong&gt;[mkdir content/notebooks]&lt;/strong&gt;  &lt;/li&gt;
 &lt;li&gt;Run the site generator with &lt;strong&gt;[make html]&lt;/strong&gt; or &lt;strong&gt;[make regenerate]&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Serve the site locally with &lt;strong&gt;[make serve]&lt;/strong&gt; or regenerate files + serve with &lt;strong&gt;[make devserver]&lt;/strong&gt; if not on Windows.  &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Posts are written in markdown by the user and stored in content/, where each post's filename should have extension 'md'.  Notebooks are incorporated in a markdown post with:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;{% notebook file.ipynb cells[i:j] %}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{% notebook file.ipynb cells[i:j] %}
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;The 'cells' argument is optional and can be omitted; the slices are standard python syntax.  The &lt;em&gt;LOAD_CONTENT_CACHE&lt;/em&gt; setting should be False if notebooks are edited after they're added to content/notebooks/.  Otherwise, the cached version is used by Pelican.  &lt;/p&gt;
 &lt;p&gt;Initially, &lt;strong&gt;[make html]&lt;/strong&gt; must be run twice because '_nb_header.html' is only generated after the first run.  This file contains all the CSS/JS present in an IPython notebook.  &lt;/p&gt;
 &lt;p&gt;Math blocks were left-aligned in IPython v1.2 but are centered in IPython v2.3, which is the preferred behavior.  To force centering of math blocks while using v1.2, I made copy of _nb_header.html, edited it to include the addition below, and pointed to it in pelicanconf.py's &lt;em&gt;EXTRA_HEADER&lt;/em&gt; setting.  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;style&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;style&lt;/span&gt; &lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
 .MathJax_Display{text-align: center !important;}
 &lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -503,7 +1523,7 @@ In&amp;nbsp;[1]:
 &lt;li&gt;A subdirectory of the above that holds the content pushed to the web server.  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The former has a .gitignore file that contains:  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;*.pyc
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;*.pyc
 cache/
 env/
 output/
@@ -522,7 +1542,7 @@ username.github.io/
 &lt;li&gt;&lt;a href="http://pirsquared.org/blog/pelican-tags-vs-categories.html"&gt;tags-vs-categories in Pelican&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Script to summarize available Pelican themes&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 &lt;span class="sd"&gt;Ugly script used to summarize all pelican-themes.&lt;/span&gt;
 &lt;span class="sd"&gt;https://github.com/getpelican/pelican-themes.&lt;/span&gt;
 
@@ -532,39 +1552,39 @@ username.github.io/
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;OrderedDict&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;od&lt;/span&gt;
 
-&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;pelican-themes&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;pelican-themes&amp;#39;&lt;/span&gt;
 
-&lt;span class="c"&gt;# first, discover all themes that have screenshots&lt;/span&gt;
-&lt;span class="c"&gt;# each screenshot&amp;#39;s filename is stored&lt;/span&gt;
+&lt;span class="c1"&gt;# first, discover all themes that have screenshots&lt;/span&gt;
+&lt;span class="c1"&gt;# each screenshot&amp;#39;s filename is stored&lt;/span&gt;
 &lt;span class="n"&gt;contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;accumulated_screenshots&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;od&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;theme_directory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theme_directory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;.git&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theme_directory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;entry&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;.git&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;theme_contents&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theme_directory&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;accumulated_screenshots&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
         &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;theme_file&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;theme_contents&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;theme_file&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;jpg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;gif&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;theme_file&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;:]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;jpg&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;gif&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
                 &lt;span class="n"&gt;accumulated_screenshots&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;entry&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;theme_file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="c"&gt;# second, create an HTML file&lt;/span&gt;
-&lt;span class="c"&gt;# the IMG elements point to the accumulated screenshots&lt;/span&gt;
-&lt;span class="n"&gt;to_write&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="c1"&gt;# second, create an HTML file&lt;/span&gt;
+&lt;span class="c1"&gt;# the IMG elements point to the accumulated screenshots&lt;/span&gt;
+&lt;span class="n"&gt;to_write&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;html&amp;gt;&amp;lt;body&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;theme&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;screenshots&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;accumulated_screenshots&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iteritems&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;THEMES_DIR&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;theme&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;screenshot&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;screenshots&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
         &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="c"&gt;# print the theme&amp;#39;s name only once&lt;/span&gt;
-            &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;h1&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;/h1&amp;gt;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;theme&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="c1"&gt;# print the theme&amp;#39;s name only once&lt;/span&gt;
+            &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;h1&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;lt;/h1&amp;gt;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;theme&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;screenshot_path&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;screenshot&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;center&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;center&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
         &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-            &lt;span class="s"&gt;&amp;#39;&amp;lt;img src=&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot; height=500&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;screenshot_path&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;&amp;lt;img src=&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot; height=500&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;screenshot_path&lt;/span&gt;
         &lt;span class="p"&gt;)&lt;/span&gt;
-        &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;/center&amp;gt;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;/center&amp;gt;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;br /&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;summary.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;summary.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;writelines&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;to_write&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</summary><category term="python"></category></entry></feed>
+&lt;/pre&gt;&lt;/div&gt;</content><category term="python"></category></entry></feed>
